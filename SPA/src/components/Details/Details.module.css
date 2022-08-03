@@ -1,0 +1,199 @@
+
+.body{
+    background-image: url('../../../public/static/images/hand2.jpg');
+    /* background: linear-gradient(#282152,#5b4cb1); */
+    margin-top: -5rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.wrapper {
+    height: 680px;
+    max-width: 1100px;
+    display: flex;
+    
+    width:80vw;
+    margin: 140px auto;
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: 0px 0px 3px 10px white;
+}
+@media only screen and (max-width: 600px) {
+    .wrapper {
+      flex-direction: column;
+    }
+  }
+
+.img {
+    float: left;
+    height: 100%;
+    flex:1;
+  
+}
+
+.img img {
+    border-radius: 12px 0 0 7px;
+    height: 100%;
+}
+
+.info {
+    flex:1;
+    float: left;
+   
+    border-radius: 0 7px 10px 7px;
+    background-color: rgba(194, 189, 189, 0.466);
+}
+
+.text {
+    height: 300px;
+    width: 327px;
+}
+
+.text h1 {
+    margin: 0 0 0 17px;
+    padding-top: 52px;
+    font-size: 50px;
+    color: white;
+    font-weight: 300;
+}
+
+.text h1,
+.btn p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.text h2 {
+    margin: 8px 0 47px 18px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    color: #282152;
+    letter-spacing: 0.3em;
+    margin-bottom: 0;
+}
+
+.text h4 {
+    margin: 8px 0 10px 18px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    color: #282152;
+    letter-spacing: 0.3em;
+}
+
+.text h4 {
+    margin: 8px 0 10px 18px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    color: #282152;
+    letter-spacing: 0.2em;
+}
+
+.text h5 {
+    margin: 25px 0 10px 18px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    color: #282152;
+    letter-spacing: 0.2em;
+}
+
+.text>p {
+    margin: 10px 0 10px 18px;
+    
+    height: auto;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #282152;
+    line-height: 1.6em;
+    margin-bottom: auto;
+    font-size: 15px;
+    font-weight: lighter;
+    overflow: hidden;
+}
+
+.btn {
+    text-align: center;
+    margin-top: 15em;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+
+.btn button{
+    
+    border: none;
+    height: auto;
+    width: 50%;
+    align-items: center;
+    padding: 10px;
+
+    justify-content: space-around;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: white;
+    display: block;
+    margin-left: 30px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+
+}
+
+
+.edit {
+    cursor:pointer;
+    background-color: #9591af;
+}
+
+.edit:hover {
+    cursor:pointer;
+    background-color: #282152;
+}
+
+.volunteer {
+    cursor:pointer;
+    background-color:  #9591af;
+}
+
+.volunteer:hover {
+    cursor:pointer;
+    background-color:  #282152;
+}
+.alreadyVolunteer{
+    background-color:  #9591af;
+    cursor: not-allowed;
+}
+.donate {
+    cursor:pointer;
+    background-color:  #9591af;
+}
+
+.donate:hover {
+    cursor:pointer;
+    background-color:  #282152;
+}
+
+.remove {
+    cursor:pointer;
+    background-color: #9591af;
+}
+
+.remove:hover {
+    cursor:pointer;
+    background-color: #282152;
+}
+
+/* .no-housing {
+    background-color: #5a5383;
+}
+
+.alRentHome {
+    background-color: rgba(135, 167, 98, 0.911);
+    text-align: center;
+} */
