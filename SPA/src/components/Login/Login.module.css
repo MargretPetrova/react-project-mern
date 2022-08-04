@@ -25,24 +25,24 @@ img {
 .boxs {
     margin: 10rem auto;
     border-radius: 0.1em;
-    box-shadow: 0px 0px 16px rgb(253, 253, 253);
+    /* box-shadow: 0px 0px 16px rgb(253, 253, 253); */
     flex-direction: column;
     width: 100%;
     max-width: 400px;
     max-height: 600px;
     padding: .55rem;
-    background: rgb(173, 168, 168);
+    background: white;
 }
 .boxs:hover{
    
-    box-shadow: 0px 0px 80px rgb(253, 253, 253);
+    /* box-shadow: 0px 0px 80px rgb(253, 253, 253); */
 }
 
 .image {
     padding:5px;
     border-radius: 9px;
     overflow: hidden;
-    padding-bottom: 50%;
+    padding-bottom: 40%;
     max-height: 200px;
     background-image: url('../../../public/static/images/avatar2.png');
     background-repeat: no-repeat;
@@ -52,6 +52,7 @@ img {
 }
 
 .cardHeading {
+    
     position: relative;
     top: 0%;
     /* margin-top: 55px; */
@@ -90,7 +91,7 @@ img {
     font-size: 1.25rem;
     padding: 1em;
     width: 100%;
-    font-weight: 500;
+    font-weight: 400;
     background-color:#9591af;
     border-radius: 0.1em;
     color: #FFF;

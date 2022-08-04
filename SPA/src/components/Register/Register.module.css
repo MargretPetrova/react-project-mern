@@ -24,31 +24,29 @@ img {
     margin: 10rem auto;
     display: flex;
     border-radius: 0.1em;
-    box-shadow: 0px 0px 16px rgb(253, 253, 253);
+    /* box-shadow: 0px 0px 16px rgb(253, 253, 253); */
     flex-direction: column;
     width: 100%;
     max-width: 450px;
     padding: .55rem;
-    background: rgb(173, 168, 168);
+    background: whitesmoke;
 }
-.boxs:hover{
-    box-shadow: 0px 0px 80px rgb(253, 253, 253);
-}
-
 
 .image {
     border-radius: 9px;
     overflow: hidden;
-    padding-bottom: 50%;
+   
+    padding-bottom: 40%;
     max-height: 200px;
     background-image: url('../../../public/static/images/avatar2.png');
     background-repeat: no-repeat;
-    background-size: 60%;
+    background-size: 50%;
     background-position:50% 0%;
     position: relative;
 }
 
 .cardHeading {
+    padding-top: 2px;
     position: relative;
     top: 0%;
     /* margin-top: 55px; */
@@ -74,6 +72,7 @@ img {
 
 .action {
     margin-top: 0.6rem;
+    border-radius: 0.1em;
 }
 
 .actionButton {
@@ -83,9 +82,9 @@ img {
     font-size: 1.25rem;
     padding: 1em;
     width: 100%;
-    font-weight: 500;
+    font-weight: 400;
     background-color:#9591af;
-    border-radius: 0.1em;
+   
     color: #FFF;
     border: 0;
     box-shadow: 0px 0px 16px #282152;
@@ -98,6 +97,7 @@ img {
 .actionButton:hover {
     
     cursor: pointer;
+    border-radius:0.1em;
     background-color: #282152;
 }
 
