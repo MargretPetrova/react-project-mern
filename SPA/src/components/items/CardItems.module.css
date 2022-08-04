@@ -1,4 +1,4 @@
-.cardHome {
+/* .cardHome {
     background: white;
     bottom: 0;
     box-shadow: 0px 0px 40px 4px rgba(16, 16, 97, 0.315);
@@ -15,6 +15,7 @@
 }
 
 .cardHome>h2 {
+    display:none;
     color: #0c0c41;
     font-family: 'Raleway', sans-serif;
     font-size: 22px;
@@ -26,16 +27,16 @@
     z-index: 9999;
 }
 
-.cardHome:hover h2 {
+.cardHome:hover + h2 {
     background: #282152;
     color: #fff;
     margin-top: 150px;
     padding: 5px;
 }
 
-.cardHome:hover .cardImage {
+.cardHome:hover .cardImage { */
     /* background-size: cover; */
-    border-radius: 0;
+    /* border-radius: 0;
     margin-top: -120px;
 }
 
@@ -91,9 +92,9 @@
 z-index: 9999;
 
     border:3px solid  #282152;
-    border-radius: 3px;
+    border-radius: 3px; */
     /* color:  #282152; */
-    display: inline-block;
+    /* display: inline-block;
     font-family: 'Raleway', sans-serif;
     font-size: 17px;
     font-weight: 400;
@@ -102,7 +103,7 @@ z-index: 9999;
     line-height: 36px;
     padding: 0 2rem;
     text-align: left;
-    /* margin-left: -1em; */
+  
     text-decoration: none;
     text-transform: uppercase;
     transition: 0.2s ease-out;
@@ -112,4 +113,73 @@ z-index: 9999;
     background-color:  #282152;
     box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     color: #fff;
+} */
+.cardHome {
+    border-radius: 0.1em;
+    box-shadow: 0px 0px 20px rgb(80, 77, 77);
+    /* background-color: #9591af; */
+    padding-top: 20px;
+    width: 380px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+  }
+  .cardHome:hover{
+    box-shadow: 0px 0px 60px rgb(48, 46, 46);
+    width: 390px
+
+  }
+  .cardHome h2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+   padding-bottom: 10px;
+    color:#282152;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .cardHome p{
+    padding:10px;
+   
+  }
+  .cardImage>img {
+    width: 100%;
+    height: 100%;
+}
+  
+ 
+  .btn  button{
+    
+    border: none;
+    height: auto;
+    width:100%;
+    align-items: center;
+    padding: 10px;
+
+    justify-content: space-around;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    /* letter-spacing: 0.2em; */
+    color: white;
+    display: flex;
+
+
+}
+.cardHome button {
+    text-decoration: none;
+    color: #282152;
+}
+  
+.details {
+    cursor:pointer;
+    background-color: transparent;
+}
+
+.details:hover {
+    cursor:pointer;
+    background-color:#282152;
+    text-decoration: underline; 
+}
+.details:hover{
+    color:white;
 }

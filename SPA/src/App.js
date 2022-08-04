@@ -7,7 +7,6 @@ import Register from './components/Register/Register'
 import Login from './components/Login/Login';
 import About from './components/AboutPage/About';
 import Catalog from './components/Catalog/Catalog';
-import Search from './components/Search/Search';
 import Details from './components/Details/Details'
 // import uniqid from 'uniqid'
 import styles from './App.css';
@@ -19,6 +18,7 @@ import { ProtectedRouteFromUser } from './components/ProtectedRouteFromUser'
 import { Edit } from './components/Edit/Edit';
 import ErrorPage from './components/404/ErrorPage';
 import Notification from './components/Notification/Notification';
+import ProfilePage from './components/ProfilePage/ProfilePage';
 // import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 
 function App() {
@@ -63,7 +63,7 @@ const addNotifications=(dataMsg, dataType)=>{
 
         <Header />
         
-          {/* <Notification/> */}
+          <Notification/>
          
         
         <Routes>
@@ -75,10 +75,11 @@ const addNotifications=(dataMsg, dataType)=>{
           </Route>
 
           <Route path="/catalog" element={<Catalog />} />
+          <Route path="/profile" element={<ProfilePage />} />
 
           <Route element={<ProtectedRoute />}>
             <Route path="/create" element={<CreateCenter />} />
-            <Route path="/search" element={<Search />} />
+            <Route path="/profile" element={<ProfilePage />} />
             <Route path="/catalog/:id/edit" element={<Edit />} />
           </Route>
 

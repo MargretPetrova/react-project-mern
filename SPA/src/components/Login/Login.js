@@ -19,7 +19,7 @@ document.title = 'Login Page';
     }, [])
     const navigate = useNavigate();
     const {isLoggedIn} = useContext(AuthContext);
-    const{addNotifications, types} = useContext(NotificationContext)
+    const{notifications, addNotifications, types} = useContext(NotificationContext)
 
     const [inputs, setInputs]= useState([
         {id: uniqid(),text: 'Email',name: 'email', placeholder: 'magi@abv.bg'},

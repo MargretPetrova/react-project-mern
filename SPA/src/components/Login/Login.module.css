@@ -15,7 +15,6 @@ img {
   
     background-image: url('../../../public/static/images/hand2.jpg');
    display: flow-root;
-    /* background: linear-gradient(#282152,#5b4cb1); */
     margin-top: -5rem;
     background-repeat: no-repeat;
     background-size: cover;
@@ -25,19 +24,22 @@ img {
 
 .boxs {
     margin: 10rem auto;
-    /* display: flex; */
+    border-radius: 0.1em;
+    box-shadow: 0px 0px 16px rgb(253, 253, 253);
     flex-direction: column;
     width: 100%;
-    max-width: 550px;
-    /* border-radius: 10px;
-    box-shadow: 0px 0px 40px 0px; */
-    border-radius: 7px 7px 7px 7px;
-    box-shadow: 0px 0px 3px 10px white;
+    max-width: 400px;
+    max-height: 600px;
     padding: .55rem;
     background: rgb(173, 168, 168);
 }
+.boxs:hover{
+   
+    box-shadow: 0px 0px 80px rgb(253, 253, 253);
+}
 
 .image {
+    padding:5px;
     border-radius: 9px;
     overflow: hidden;
     padding-bottom: 50%;
@@ -53,7 +55,8 @@ img {
     position: relative;
     top: 0%;
     /* margin-top: 55px; */
-    font-size: 1.6rem;
+    
+    font-size: 1.5rem;
     font-weight: 200;
     color: #282152;
     text-align: center;
@@ -68,7 +71,7 @@ img {
 }
 
 .cardForm {
-    padding: 2rem 1rem 0;
+    padding: 1rem 1rem 0;
 }
 
 
@@ -78,16 +81,21 @@ img {
 }
 
 .actionButton {
-    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+   
+   
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
     font: inherit;
     font-size: 1.25rem;
     padding: 1em;
     width: 100%;
     font-weight: 500;
     background-color:#9591af;
-    border-radius: 6px;
+    border-radius: 0.1em;
     color: #FFF;
     border: 0;
+    box-shadow: 0px 0px 16px #282152;
 }
 
 .actionButton:focus {
@@ -95,9 +103,9 @@ img {
 }
 
 .actionButton:hover {
+    cursor: pointer;
     background-color: #282152;
 }
-
 .cardInfo {
     padding: 1rem 1rem;
     text-align: center;

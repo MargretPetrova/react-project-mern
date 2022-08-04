@@ -17,15 +17,18 @@
 
 
 .boxs {
-    margin: 5rem auto;
+    margin: 10rem auto;
     display: flex;
+    border-radius: 0.1em;
+    box-shadow: 0px 0px 16px rgb(253, 253, 253);
     flex-direction: column;
     width: 100%;
-    max-width: 550px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 40px 0px;
+    max-width: 450px;
     padding: .55rem;
     background: rgb(173, 168, 168);
+}
+.boxs:hover{
+    box-shadow: 0px 0px 80px rgb(253, 253, 253);
 }
 .boxHeading{
    
@@ -69,22 +72,27 @@
     padding: 2rem 1rem 0;
 }
 
-
-
 .action {
     margin-top: 0.6rem;
+    padding: 1em;
 }
 
 .actionButton {
+    cursor: pointer;
+   
+   
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
     font: inherit;
     font-size: 1.25rem;
     padding: 1em;
     width: 100%;
     font-weight: 500;
-    background-color: #282152;;
-    border-radius: 6px;
+    background-color:#9591af;
+    border-radius: 0.1em;
     color: #FFF;
     border: 0;
+    box-shadow: 0px 0px 16px #282152;
 }
 
 .actionButton:focus {
@@ -92,9 +100,9 @@
 }
 
 .actionButton:hover {
-    background-color: rgba(129, 115, 115, 0.466);
+    cursor: pointer;
+    background-color: #282152;
 }
-
 .cardInfo {
     padding: 1rem 1rem;
     text-align: center;
@@ -108,27 +116,24 @@
 .background-image {
     background: url('../../../public/static/images/formImage.jpg');
 }
-input {
-    appearance: none;
-    border-radius: 0;
-}
+
 
 .input {
     display: flex;
     flex-direction: column-reverse;
     position: relative;
-    padding-top: 2.5rem;
-    padding-bottom: 2em;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5em;
+    border-radius: 0.1em;
 }
 
 .name {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #8597a3;
-    position: absolute;
-    font-size: 1.6em;
-    top: 1.7rem;
-    transition: .25s ease;
+    color: #282152;;
+    transform: translateY(-1.5rem);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1rem;
 }
+
 
 .inputField{
     border: 0;
@@ -137,16 +142,12 @@ input {
     border-bottom: 2px solid #eee;
     font: inherit;
     font-size: 1.5rem;
-    padding: .25rem 0;
 }
 
 .inputField:focus,
 .inputField:valid {
+    background-color: transparent;
     outline: 0;
-    border-bottom-color: #6658d3;
+    border-bottom-color: #9591af;
 }
 
-.name {
-    color: #282152;;
-    transform: translateY(-1.5rem);
-}
