@@ -37,7 +37,7 @@ const Header = ({ }) => {
   return (
 
 
-    <nav >
+    <nav className={styles.navigation}>
       <Link  to="/about">About</Link>
       <Link  to="/">Home</Link>
       <ul>

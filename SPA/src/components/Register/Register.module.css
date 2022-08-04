@@ -13,6 +13,7 @@ img {
 .body {
     background-image: url('../../../public/static/images/hand2.jpg');
     /* background: linear-gradient(#282152,#5b4cb1); */
+    display: flow-root;
     margin-top: -5rem;
     background-repeat: no-repeat;
     background-size: cover;

@@ -59,7 +59,7 @@ try {
         
             <div className={styles.boxs}>
             <div className={styles.image}>
-            <h2 className={styles.cardHeading} >Login  </h2> 
+            <h2 className={styles.cardHeading} >Login</h2> 
             </div>
          
                 <form className={styles.cardForm}  method="POST" onSubmit={onLoginHandler}>

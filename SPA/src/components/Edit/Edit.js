@@ -83,28 +83,28 @@ function Edit() {
                     </div>
                     <form className={styles.cardForm} onSubmit={onEditHandler}>
                         <div className={styles.input} >
-                            <input type="text" className="input-field" name="name" defaultValue={center.name} />
+                            <input type="text" className={styles.inputField} name="name" defaultValue={center.name} />
                             <label className={styles.name}>Name</label>
                         </div>
                         <div className={styles.input} >
-                            <input type="text" className="input-field" name="location" defaultValue={center.location} />
+                            <input type="text" className={styles.inputField} name="location" defaultValue={center.location} />
                             <label className={styles.name}>Location</label>
                         </div>
                         <div className={styles.input} >
-                            <input type="text" className="input-field" name="address" defaultValue={center.address} />
+                            <input type="text" className={styles.inputField} name="address" defaultValue={center.address} />
                             <label className={styles.name}>Address</label>
                         </div>
                         <div className={styles.input} >
-                            <input type="text" className="input-field" name="phone" defaultValue={center.phone} />
+                            <input type="text" className={styles.inputField} name="phone" defaultValue={center.phone} />
                             <label className={styles.name}>Phone Number</label>
                         </div>
 
                         <div className={styles.input} >
-                            <input type="text" className="input-field" name="image" defaultValue={center.image} />
+                            <input type="text" className={styles.inputField} name="image" defaultValue={center.image} />
                             <label className={styles.name}>Image</label>
                         </div>
                         <div className={styles.input} >
-                            <input type="text" className="input-field" name="description" defaultValue={center.description} />
+                            <input type="text" className={styles.inputField} name="description" defaultValue={center.description} />
                             <label className={styles.name}>Description</label>
                         </div>
                         {/* {inputs.map(input => <FormItems data={input} key={uniqid()}/>)} */}

@@ -63,7 +63,7 @@ const addNotifications=(dataMsg, dataType)=>{
 
         <Header />
         
-          <Notification/>
+          {/* <Notification/> */}
          
         
         <Routes>

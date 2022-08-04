@@ -8,6 +8,7 @@
 
 .body {
     background-image: url('../../../public/static/images/hand2.jpg');
+    display: flow-root;
     margin-top: -5rem;
     background-repeat: no-repeat;
     background-size: cover;

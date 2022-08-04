@@ -14,6 +14,7 @@ img {
 .body {
   
     background-image: url('../../../public/static/images/hand2.jpg');
+   display: flow-root;
     /* background: linear-gradient(#282152,#5b4cb1); */
     margin-top: -5rem;
     background-repeat: no-repeat;
@@ -24,7 +25,7 @@ img {
 
 .boxs {
     margin: 10rem auto;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     width: 100%;
     max-width: 550px;
