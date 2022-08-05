@@ -10,6 +10,12 @@ async function getAll() {
 
 async function create(item) {
     const result = new Center(item);
+    const ownerId = result.ownerId;
+    const owner = await User.findById(ownerId)
+    
+    owner.ownerOf.push(result._id);
+    await owner.save()
+
     await result.save();
 
     return result;
@@ -37,18 +43,40 @@ async function update(id, center) {
     return existing;
 }
 
-async function deleteById(id) {
-    await Center.findByIdAndDelete(id);
+async function deleteById(centerId) {
+    const center = await Center.findById(centerId);
+    
+    const user = await User.findById(center.ownerId);
+let index = user.ownerOf.indexOf(centerId);
+user.ownerOf.splice(index, 1);
+await user.save();
+
+for (const eachVolunteer of center.volunteers) {
+    const volunteer= await User.findById(eachVolunteer);
+    let index = volunteer.volunteerIn.indexOf(centerId);
+    volunteer.volunteerIn.splice(index, 1);
+await volunteer.save();
 }
+
+
+await Center.findByIdAndDelete(centerId);
+
+}
+
 
 async function volunteer(centerId, userId){
     const center = await Center.findById(centerId);
-   
-
+    
     if (center.volunteers.includes(userId)) {
         throw new Error('User had allready become a volunteer!')
     }
     center.volunteers.push(userId);
+
+    const volunteer = await User.findById(userId)
+   volunteer.volunteerIn.push(center._id);
+    await volunteer.save()
+
+
     await center.save();
     
 
@@ -70,10 +98,6 @@ async function donate(centerId, donation){
     center.donations.push(makedDonation._id);
     await center.save();
 }
-
-
-
-
 module.exports = {
     getAll,
     create,

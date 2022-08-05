@@ -3,31 +3,34 @@ const api = require('../services/centers');
 const { isAuth, isOwner } = require('../middlewares/guards');
 const mapErrors = require('../utils/mapper');
 const preload = require('../middlewares/preload');
+const { editUser } = require('../services/users');
+const User = require('../models/User');
 
 
 router.get('/', async (req, res) => {
-    
+
     console.log(req.user);
     const data = await api.getAll();
     res.json(data);
 });
 
 router.post('/create', isAuth(), async (req, res) => {
-    
-const center = {
-    name: req.body.name,
-    location: req.body.location,
-    address:req.body.address,
-    phone: req.body.phone,
-    image: req.body.image,
-    description: req.body.description,
-    ownerId: req.user._id
-    //volunteers donations:?
 
-}
+    const center = {
+        name: req.body.name,
+        location: req.body.location,
+        address: req.body.address,
+        phone: req.body.phone,
+        image: req.body.image,
+        description: req.body.description,
+        ownerId: req.user._id
+        //volunteers donations:?
+
+    }
     try {
         const result = await api.create(center);
         res.status(201).json(result);
+
     } catch (err) {
         console.error(err.message);
         const error = mapErrors(err);
@@ -45,7 +48,7 @@ router.put('/:id', preload(), isOwner(), async (req, res) => {// edit
     const center = {
         name: req.body.name,
         location: req.body.location,
-        address:req.body.address,
+        address: req.body.address,
         phone: req.body.phone,
         image: req.body.image,
         description: req.body.description
@@ -64,7 +67,7 @@ router.put('/:id', preload(), isOwner(), async (req, res) => {// edit
 router.delete('/:id', preload(), isOwner(), async (req, res) => {// delete
     try {
         const centerId = req.params.id;
-        
+
         await api.deleteById(centerId);
         res.status(204).end();
     } catch (err) {
@@ -73,26 +76,26 @@ router.delete('/:id', preload(), isOwner(), async (req, res) => {// delete
         res.status(400).json({ message: error });
     }
 });
-router.post('/:id/volunteer', isAuth(), async (req, res)=>{
+router.post('/:id/volunteer', isAuth(), async (req, res) => {
     const centerId = req.params.id;
-    
-    const userId =  req.user._id;
-    
-   
+
+    const userId = req.user._id;
+
+
     try {
-                const result = await api.volunteer(centerId,userId);
-                res.json(result);
-            } catch (err) {
-                console.error(err.message);
+        const result = await api.volunteer(centerId, userId);
+        res.json(result);
+    } catch (err) {
+        console.error(err.message);
         const error = mapErrors(err);
         res.status(400).json({ message: error });
-            }
+    }
 
 
 })
-router.post('/:id/:donation', isAuth(), async (req, res)=>{
+router.post('/:id/:donation', isAuth(), async (req, res) => {
     const centerId = req.params.id;
-    const userId =  req.session.user._id
+    const userId = req.session.user._id
     const donation = {
         kind: req.body.kind,
         date: req.body.date,
@@ -101,13 +104,13 @@ router.post('/:id/:donation', isAuth(), async (req, res)=>{
         centerId: centerId
     }
     try {
-                const result = await api.donate(centerId , donation);
-                res.json(result);
-            } catch (err) {
-                console.error(err.message);
+        const result = await api.donate(centerId, donation);
+        res.json(result);
+    } catch (err) {
+        console.error(err.message);
         const error = mapErrors(err);
         res.status(400).json({ message: error });
-            }
+    }
 
 
 })

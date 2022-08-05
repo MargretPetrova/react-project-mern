@@ -10,8 +10,9 @@ import { NotificationContext } from "../../contexts/NotificationContext";
 
 export default function CreateCenter() {
     const navigate = useNavigate();
-    const {addNotifications, types} = useContext(NotificationContext)
-    // const [userInfo]= useContext(AuthContext)
+
+    const{ addNotifications, types} = useContext(NotificationContext)
+
    
     useEffect(()=>{
         document.title = 'Create Page'

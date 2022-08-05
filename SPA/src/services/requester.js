@@ -18,7 +18,7 @@ async function request(url, options) {
         }
     } catch (error) {
         
-        throw error;
+        throw error.message;
     }
 }
 

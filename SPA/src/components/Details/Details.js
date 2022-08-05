@@ -6,6 +6,7 @@ import { becomeVolunteer, deleteCenter, getCenter } from '../../services/postReq
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { isOwnerFunc, isVolunteer } from '../../guards/authGuard';
+import { NotificationContext } from '../../contexts/NotificationContext';
 
 export default function Details({ }) {
 
@@ -13,6 +14,8 @@ export default function Details({ }) {
         document.title = 'Details Page'
     }, []);
     const navigate = useNavigate()
+
+    const{addNotifications, types} = useContext(NotificationContext)
 
     const { pathname } = useLocation();
     const centerId = pathname.split('/')[2]
@@ -27,7 +30,7 @@ export default function Details({ }) {
             const result = await getCenter(centerId);
             setCenter(result);
             let allVolunteers = result.volunteers.map(x=> {return`${ x.firstName} ${x.lastName}, `})
-           setVolunteers(allVolunteers)
+           setVolunteers(allVolunteers);
           
         } catch (err) {
             console.error(err.message)
@@ -50,9 +53,11 @@ export default function Details({ }) {
         }
         try {
             await deleteCenter(centerId);
+            addNotifications('Successfully deleted', types.success)
             navigate('/catalog')
 
         } catch (err) {
+            addNotifications(err.message, types.success)
             console.error(err.message)
         }
 
@@ -72,8 +77,10 @@ export default function Details({ }) {
         try {
             const result = await becomeVolunteer(centerId, userInfo.user.id);
             getCenterById();
+            addNotifications('Successfully become a volunteer in this center', types.success)
             
         } catch (err) {
+            addNotifications(err.message, types.success)
             console.error(err.message)
         }
 

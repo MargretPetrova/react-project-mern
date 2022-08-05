@@ -75,10 +75,36 @@ function verifySession(token) {
         token
     };
 }
+async function findUserById(id){
+    const existing =  User.findById(id);
+
+    if (!existing) {
+        throw new Error('Cant find that user');
+    }
+    return existing.lean()
+    .populate('ownerOf', 'name')
+    .populate('volunteerIn', 'name')
+    .populate('donations', 'kind')
+
+}
+// async function editUser(userId, centerId){
+//     const user =  User.findById(userId);
+//     console.log(user.ownerOf)
+//     try {
+//         user.ownerOf.push(centerId);
+//         await user.save();
+//     } catch (err) {
+//         throw new Error('editUser Function')
+//     }
+   
+
+// }
 
 module.exports = {
     register,
     login,
     logout,
-    verifySession
+    verifySession,
+    findUserById,
+    // editUser
 };

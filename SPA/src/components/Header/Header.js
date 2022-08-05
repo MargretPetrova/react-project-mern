@@ -29,7 +29,7 @@ const Header = ({ }) => {
   let userNavigation = (
     <>
       <li><Link  className={styles.links} to="/create">Create Help Center</Link></li>
-      
+      <li><Link  className={styles.links} to="/profile">Profile {userInfo?.user ? `of ${userInfo.user.email}`:null}</Link></li>
       <li><Link className={styles.links} to="/" onClick={onLogoutHandler} >Logout</Link></li>
     </>
   );
@@ -43,7 +43,7 @@ const Header = ({ }) => {
       <ul>
 
         <li><Link  to="/catalog">Centers</Link></li>
-        <li><Link  className={styles.links} to="/profile">Profile {userInfo?.user ? `of ${userInfo.user.email}`:null}</Link></li>
+       
         {userInfo && userInfo.user
           ? userNavigation
           : guestNavigation

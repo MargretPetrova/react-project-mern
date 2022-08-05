@@ -6,6 +6,7 @@
     margin-top: -5rem;
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: whitesmoke;
 
 }
 .wrapper {
@@ -39,12 +40,12 @@
 .info {
     flex:1;
     float: left;
-   
     border-radius: 0 7px 10px 7px;
-    background-color: rgba(194, 189, 189, 0.466);
+    background-color: whitesmoke;
 }
 
 .text {
+    
     height: 300px;
     width: 327px;
 }
@@ -52,8 +53,9 @@
 .text h1 {
     margin: 0 0 0 17px;
     padding-top: 52px;
+    padding-bottom: 25px;
     font-size: 50px;
-    color: white;
+    color: #282152;
     font-weight: 300;
 }
 
@@ -69,11 +71,12 @@
     /* text-transform: uppercase; */
     color: #282152;
     letter-spacing: 0.1em;
-    margin-bottom: 0;
+   
 }
 
 .text h4 {
     margin: 8px 0 10px 18px;
+    padding-bottom: 25px;
     font-size: 15px;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     /* text-transform: uppercase; */
@@ -111,9 +114,11 @@
     font-size: 15px;
     font-weight: lighter;
     overflow: hidden;
+    padding-bottom: 35px;
 }
 
 .btn {
+    padding: 40px;
     text-align: center;
     margin-top: 15em;
     position: relative;
@@ -149,7 +154,12 @@
 
 .edit {
     cursor:pointer;
+    
     background-color: #9591af;
+}
+.edit a{
+    text-decoration: none;
+    color: white;
 }
 
 .edit:hover {

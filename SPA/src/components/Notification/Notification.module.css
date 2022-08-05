@@ -4,7 +4,7 @@
   right: 10px;
   min-width: 100px;
   display: block;
- 
+ background-color:whitesmoke;
   top: 80px;
   text-align: center;
   border-radius: 1rem;
@@ -21,7 +21,7 @@
   font-size: 23px;
   /* padding: 20px; */
   height: auto;
-  color:grey;
+  color:rgb(6, 109, 12);
  
 }
 .errorss>p{

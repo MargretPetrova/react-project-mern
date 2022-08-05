@@ -29,8 +29,11 @@ export default function Register() {
 
     ])
     const {isLoggedIn} = useContext(AuthContext)
+
     const {addNotifications, types} = useContext(NotificationContext)
+
     const navigate = useNavigate();
+    
     async function onRegisterHandler(e) {
         e.preventDefault();
         let formData = new FormData(e.currentTarget);

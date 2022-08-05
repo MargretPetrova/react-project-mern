@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { isGuest } = require('../middlewares/guards');
-const { register, login, logout } = require('../services/users');
+const { isGuest, isAuth } = require('../middlewares/guards');
+const { register, login, logout , findUserById} = require('../services/users');
 const mapErrors = require('../utils/mapper');
 
 
@@ -38,5 +38,12 @@ router.get('/logout', (req, res) => {
     logout(req.user.token);
     res.status(204).end();
 });
+
+router.get('/profile', isAuth(), async (req, res) => {
+    //     const posts = await getPostsByAuthor(req.session.user._id)//).map(postViewModel);  //if you use .lean() in the post service, you dont have to map to model 
+    //     res.render('profile', { title: 'My Posts', posts })
+    const user = await findUserById(req.user._id);
+    res.json(user);
+    })
 
 module.exports = router;

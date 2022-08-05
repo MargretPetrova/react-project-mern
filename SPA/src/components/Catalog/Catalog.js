@@ -9,18 +9,17 @@ export default function Catalog() {
     }, [])
     let [centers, setCenters] = useState([])
 
-    useEffect(() => {
-        
-        async function getData() {
+    async function getData() {
 
-            try {
-                const result = await getAllCenters();
+        try {
+            const result = await getAllCenters();
 
-                setCenters(result);
-            } catch (err) {
-                console.error(err)
-            }
+            setCenters(result);
+        } catch (err) {
+            console.error(err)
         }
+    }
+    useEffect(() => {
         getData();
     }, [])
     

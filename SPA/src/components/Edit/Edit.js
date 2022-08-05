@@ -9,14 +9,15 @@ import { isOwnerFunc } from '../../guards/authGuard';
 import { AuthContext } from '../../contexts/AuthContext';
 import { NotificationContext } from '../../contexts/NotificationContext';
 
-
 function Edit() {
     useEffect(() => {
         document.title = 'Edit Page'
     }, [])
     const navigate = useNavigate()
+
     const { userInfo } = useContext(AuthContext);
-    const {addNotifications, types} = useContext(NotificationContext)
+
+    const{notifications, addNotifications, types} = useContext(NotificationContext)
 
     const { pathname } = useLocation();
     const centerId = pathname.split('/')[2]
@@ -24,17 +25,17 @@ function Edit() {
 
     const [center, setCenter] = useState([]);
 
-    useEffect(() => {
-
-        async function getCenterById() {
-            try {
-                const result = await getCenter(centerId);
-                setCenter(result)
-            } catch (err) {
-                addNotifications(err.message, types.error)
-                console.error(err.message)
-            }
+    async function getCenterById() {
+        try {
+            const result = await getCenter(centerId);
+            setCenter(result)
+        } catch (err) {
+            addNotifications(err.message, types.error)
+            console.error(err.message)
         }
+    }
+
+    useEffect(() => {
         getCenterById()
     }, [])
 
@@ -53,15 +54,14 @@ function Edit() {
         let image = formData.get('image').trim();
         let description = formData.get('description').trim()
 
-
         if (name == '' || location == '' || address == '' || description == '' || phone == '' || image == '') {
             throw new Error('All fields are required')
         }
         let data = { name, location, address, phone, image, description }
-
-        setCenter(data);
+        
         try {
             await editCenter(data, centerId)
+            setCenter(data);
             addNotifications('successfuly edited the center', types.success)
             navigate(`/catalog/${centerId}`)
 

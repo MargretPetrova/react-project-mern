@@ -47,13 +47,10 @@ const addNotifications=(dataMsg, dataType)=>{
     setNotifications({show:true, message: dataMsg, type: dataType})
     setTimeout(() => {
         setNotifications(initialNotificationsState);
-    }, 3000);
+    }, 4000);
 
 }
  
-
-  console.log('appjs',userInfo)
-  console.log('appjs', notifications)
   return (
     <AuthContext.Provider value={{ userInfo, isLoggedIn, isLoggedOut }}>
       <NotificationContext.Provider value={{notifications,addNotifications, types }}>
@@ -69,14 +66,14 @@ const addNotifications=(dataMsg, dataType)=>{
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+
           <Route element={<ProtectedRouteFromUser />}>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login/> } />
           </Route>
 
           <Route path="/catalog" element={<Catalog />} />
-          <Route path="/profile" element={<ProfilePage />} />
-
+          
           <Route element={<ProtectedRoute />}>
             <Route path="/create" element={<CreateCenter />} />
             <Route path="/profile" element={<ProfilePage />} />

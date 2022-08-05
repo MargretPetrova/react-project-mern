@@ -36,3 +36,11 @@ export async function logOut() {
     await get('/users/logout');
     authService.delUser();
 }
+export async function getCurrentUser(userId){
+    try {
+        return await get(`/users/profile`)
+    } catch (err) {
+        throw err.message
+    }
+    
+}
