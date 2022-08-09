@@ -1,5 +1,5 @@
 import { AuthContext } from './contexts/AuthContext';
-import { NotificationContext } from './contexts/NotificationContext';
+import { NotificationProvider } from './contexts/NotificationContext';
 import {CookiesProvider} from 'react-cookie'
 import { Header } from './components/Header/Header';
 import CreateCenter from './components/CreateCenter/CreateCenter';
@@ -25,21 +25,13 @@ import {useCookies} from 'react-cookie'
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
-
-  //  removeCookie('user')
-  
   const [userInfo, setUserInfo] = useState({user:''});
-  // const onSet =()=>{
-  //   setUserInfo(cookies.user)
-  // }
 
   useEffect(()=>{
 if(cookies.user != undefined){
   setUserInfo({user: cookies.user})
 }
   },[cookies])
-
-  // setUserInfo(cookies)
 
   const isLoggedIn = (authData) => {
     setCookie('user',authData )
@@ -56,37 +48,15 @@ if(cookies.user != undefined){
     setUserInfo({userInfo:''});
     
   }
-  const types = {
-    error: 'Error',
-    // warn: 'warning',
-    info: 'Info',
-    success: 'Success',
-};
-const initialNotificationsState = {show: false, message: '', type: types.error}
 
-const [notifications, setNotifications] = useState(initialNotificationsState);
-const addNotifications=(dataMsg, dataType)=>{
-    setNotifications({show:true, message: dataMsg, type: dataType})
-    setTimeout(() => {
-        setNotifications(initialNotificationsState);
-    }, 4000);
-
-}
-  // console.log(cookies.user)
-    // console.log(userInfo)
   return (
     <CookiesProvider>
     <AuthContext.Provider value={{ userInfo , isLoggedIn, isLoggedOut}}>
-      <NotificationContext.Provider value={{notifications,addNotifications, types }}>
+      <NotificationProvider>
       <div className={styles.flexCcontainer}>
-      
         {/* <ErrorBoundary> */}
-
         <Header />
-        
           <Notification/>
-         
-        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -108,17 +78,13 @@ const addNotifications=(dataMsg, dataType)=>{
           
           {/* <Route path="/catalog/:id/donate" element={<Donate />} /> */}
           <Route path="/*" element={<ErrorPage />} />
-
-
-
         </Routes>
         {/* </ErrorBoundary> */}
-
       </div>
       <footer id="site-footer">
         <p>@help</p>
       </footer>
-      </NotificationContext.Provider>
+      </NotificationProvider>
     </AuthContext.Provider>
     </CookiesProvider>
 

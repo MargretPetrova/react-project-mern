@@ -28,7 +28,7 @@ export default function Details({ }) {
 
    
     async function getCenterById() {
-        
+
         try {
             const result = await getCenter(centerId);
             setCenter(result);
@@ -94,7 +94,7 @@ export default function Details({ }) {
             {(userInfo.user && isVolunteer(center.volunteers, userInfo.user._id)) ? <button className={styles.alreadyVolunteer}>You are already a volunteer in this center</button>
                 : <button className={styles.volunteer} onClick={onBecomeVolunteerHandle}>Become a volunteer</button>}
 
-            <button className={styles.donate}><Link to={`/catalog/${centerId}/donate`}>Donate</Link></button>
+            {/* <button className={styles.donate}><Link to={`/catalog/${centerId}/donate`}>Donate</Link></button> */}
         </>
     );
     let ownerButtons = (

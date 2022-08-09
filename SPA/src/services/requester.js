@@ -6,8 +6,7 @@ async function request(url, options) {
    
     try {
         const response = await fetch(host + url, options);
-        console.log('request')
-        console.log(response)
+      
         if (response.ok == false) {
             const error = await response.json();
           
@@ -45,10 +44,10 @@ function createOptions(method = 'get', data,userToken) {
     // }
    
     if (userToken != null) {
-        options.headers['X-Authorization'] = userToken;//////????????????????????????????????
+        options.headers['X-Authorization'] = userToken;
             
         }
-        // console.log(options)
+       
       
     return options;
 
@@ -66,39 +65,6 @@ export async function put(url, data,userToken) {
 }
 export async function del(url,userToken) {
     
-    return request(url, createOptions('delete',undefined, userToken))/////////////????????????????
+    return request(url, createOptions('delete',undefined, userToken))
 }
 
-// export async function logIn(email, password) {
-//     const result = await post('/users/login', {
-//         email,
-//         password
-//     });
-//     const userInfo = {
-//         email: result.email,
-//         id: result._id,
-//         token: result.accessToken
-//     };
-//     authService.setUser(userInfo);
-// }
-
-// export async function register(firstName, lastName, email, password) {
-//     const result = await post('/users/register', {
-//         firstName,
-//         lastName,
-//         email,
-//         password
-//     });
-
-//     const userInfo = {
-//         email: result.email,
-//         id: result._id,
-//         token: result.accessToken
-//     };
-//     authService.setUser(userInfo);
-
-// }
-// export async function logOut() {
-//     await get('/users/logout');
-//     authService.delUser();
-// }
