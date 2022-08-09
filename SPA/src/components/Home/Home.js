@@ -2,7 +2,7 @@
 import styles from './Home.module.css'
 
 import React , {useState, useEffect}from 'react';
-import CardItems from '../items/CardItems'
+import CardItems from '../Items/CardItems'
 
 import uniqid from 'uniqid'
 import { Link } from 'react-router-dom'
@@ -13,8 +13,9 @@ export default function Home() {
             }, []);
 
 let [cards, setCards] = useState([{name:'Open Help Center', image:'../static/images/home2.jpg'}, 
-{name:'Become a Volunteer', image:'../static/images/home3.jpg'},
- {name:'Donate', image:'./static/images/home4.jpg'}])
+{name:'Become a Volunteer', image:'../static/images/home3.jpg', description: 'Choose a center and become a volunteer in it.'},
+//  {name:'Donate', image:'./static/images/home4.jpg', description: 'Chose a center and make donation.'}
+])
 
   return (
 	<main>

@@ -61,6 +61,12 @@ function createSession(user) {
         }, JWT_SECRET)
     };
 }
+// const attachCookie = (token, res) => {
+// 	return res.cookie(process.env.COOKIE_NAME, token, {
+// 		sameSite: "none",
+// 		secure: true,
+// 	})
+// }
 
 function verifySession(token) {
     if (blacklist.includes(token)) {

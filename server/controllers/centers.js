@@ -32,9 +32,13 @@ router.post('/create', isAuth(), async (req, res) => {
         res.status(201).json(result);
 
     } catch (err) {
-        console.error(err.message);
-        const error = mapErrors(err);
-        res.status(400).json({ message: error });
+        // console.error(err.message);
+        const errormsg = mapErrors(err);
+      
+         res.status(400).json( errormsg );
+        
+        
+        
     }
 });
 

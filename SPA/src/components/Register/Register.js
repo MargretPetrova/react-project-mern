@@ -8,13 +8,14 @@ import {
 import {
     Link
 } from 'react-router-dom'
-import FormItems from '../items/FormItems'
+import FormItems from '../Items/FormItems'
 import uniqid from 'uniqid'
 import {
     register
 } from "../../services/authRequests";
 import { AuthContext } from "../../contexts/AuthContext";
 import { NotificationContext } from "../../contexts/NotificationContext";
+import convertError from "../../helpers/errorConverter";
 
 export default function Register() {
     useEffect(()=>{
@@ -29,11 +30,10 @@ export default function Register() {
 
     ])
     const {isLoggedIn} = useContext(AuthContext)
-
     const {addNotifications, types} = useContext(NotificationContext)
-
     const navigate = useNavigate();
-    
+
+
     async function onRegisterHandler(e) {
         e.preventDefault();
         let formData = new FormData(e.currentTarget);
@@ -51,12 +51,12 @@ export default function Register() {
                 throw new Error(`Enter correct password`)
 
             }
-            await register(firstName, lastName, email, password);
-            isLoggedIn()
+            const result = await register(firstName, lastName, email, password);
+            isLoggedIn(result)
             addNotifications('Successfully registration', types.success)
             navigate('/')
         } catch (err) {
-            addNotifications(err.message, types.error)
+            addNotifications(convertError(err), types.error)
             throw err.message
         }
     }

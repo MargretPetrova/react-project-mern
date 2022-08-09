@@ -8,44 +8,46 @@ import { editCenter, getCenter } from '../../services/postRequests';
 import { isOwnerFunc } from '../../guards/authGuard';
 import { AuthContext } from '../../contexts/AuthContext';
 import { NotificationContext } from '../../contexts/NotificationContext';
+import convertError from '../../helpers/errorConverter';
 
 function Edit() {
     useEffect(() => {
         document.title = 'Edit Page'
+        getCenterById()
     }, [])
     const navigate = useNavigate()
 
     const { userInfo } = useContext(AuthContext);
-
     const{notifications, addNotifications, types} = useContext(NotificationContext)
 
     const { pathname } = useLocation();
     const centerId = pathname.split('/')[2]
 
-
     const [center, setCenter] = useState([]);
 
     async function getCenterById() {
+
         try {
+
             const result = await getCenter(centerId);
             setCenter(result)
+
         } catch (err) {
-            addNotifications(err.message, types.error)
+
+            addNotifications( convertError(err), types.error)
             console.error(err.message)
         }
     }
 
-    useEffect(() => {
-        getCenterById()
-    }, [])
+    // useEffect(() => {
+    //     getCenterById()
+    // }, [])
 
 
     async function onEditHandler(e) {
         e.preventDefault();
         console.log('onEditHandler');
-        if (!isOwnerFunc(center.ownerId, userInfo.user.id)) {
-            throw new Error('Sorry, only the owner can edit this')
-        }
+      
         let formData = new FormData(e.currentTarget);
         let name = formData.get('name').trim();
         let location = formData.get('location').trim();
@@ -54,20 +56,25 @@ function Edit() {
         let image = formData.get('image').trim();
         let description = formData.get('description').trim()
 
-        if (name == '' || location == '' || address == '' || description == '' || phone == '' || image == '') {
+      
+        
+        try {
+            if (!isOwnerFunc(center.ownerId, userInfo.user._id)) {
+                throw new Error('Sorry, only the owner can edit this')
+            }
+              if (name == '' || location == '' || address == '' || description == '' || phone == '' || image == '') {
             throw new Error('All fields are required')
         }
         let data = { name, location, address, phone, image, description }
         
-        try {
-            await editCenter(data, centerId)
+            await editCenter(data, centerId, userInfo.user.accessToken)
             setCenter(data);
             addNotifications('successfuly edited the center', types.success)
             navigate(`/catalog/${centerId}`)
 
         } catch (err) {
-            addNotifications(err.message, types.error)
-            console.error(err.message)
+            addNotifications(convertError(err), types.error)
+            console.error(err)
         }
 
     }

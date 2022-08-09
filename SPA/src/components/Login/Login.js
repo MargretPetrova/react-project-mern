@@ -1,7 +1,7 @@
 import React, { useState , useContext} from "react";
 import styles from "./Login.module.css"
 import { useNavigate } from 'react-router-dom';
-import FormItems from '../items/FormItems'
+import FormItems from '../Items/FormItems'
 import uniqid from 'uniqid';
 import {Link} from 'react-router-dom'
 import * as authService from '../../services/authService'
@@ -10,21 +10,24 @@ import { useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import ErrorContainer, { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
 import { NotificationContext } from "../../contexts/NotificationContext";
-
+import {useCookies} from 'react-cookie';
+import convertError from "../../helpers/errorConverter";
 
 export default function Login() {
 
     useEffect(()=>{
 document.title = 'Login Page';
     }, [])
+
     const navigate = useNavigate();
-    const {isLoggedIn} = useContext(AuthContext);
+     const {userInfo, isLoggedIn} = useContext(AuthContext);
     const{notifications, addNotifications, types} = useContext(NotificationContext)
 
     const [inputs, setInputs]= useState([
         {id: uniqid(),text: 'Email',name: 'email', placeholder: 'magi@abv.bg'},
         {id: uniqid(),text: 'Password', name: 'password' ,placeholder: '******'}
     ]);
+    
     
 async function onLoginHandler(e){
 e.preventDefault();
@@ -38,13 +41,15 @@ try {
         throw new Error(`All fields are requred`)
     }
    
-    await logIn(email, password);
-        isLoggedIn();
+    const result = await logIn(email, password);
+
+         isLoggedIn(result);
         addNotifications('You successfuly login', types.success )
-        navigate('/')
+         navigate('/')
    
 } catch (err) {
-    addNotifications(err.message, types.error )
+
+    addNotifications(convertError(err), types.error )
     throw err.message
     
 }

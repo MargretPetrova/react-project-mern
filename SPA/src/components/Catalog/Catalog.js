@@ -1,27 +1,38 @@
 import styles from '../Catalog/Catalog.module.css'
-import CardItems from '../items/CardItems'
+import CardItems from '../Items/CardItems'
 import uniqid from 'uniqid';
-import { useEffect, useState } from 'react';
+import { useEffect, useState , useContext} from 'react';
 import { getAllCenters } from '../../services/postRequests';
+import { NotificationContext } from '../../contexts/NotificationContext';
+import convertError from '../../helpers/errorConverter';
+
 export default function Catalog() {
+
     useEffect(() => {
-        document.title = 'Catalog Page'
+        document.title = 'Catalog Page';
+        getData();
     }, [])
-    let [centers, setCenters] = useState([])
+
+    let [centers, setCenters] = useState([]);
+    const {addNotifications, types} = useContext(NotificationContext)
 
     async function getData() {
 
         try {
-            const result = await getAllCenters();
 
+            const result = await getAllCenters();
             setCenters(result);
+
         } catch (err) {
+
+            addNotifications(convertError(err), types.error)
             console.error(err)
         }
     }
-    useEffect(() => {
-        getData();
-    }, [])
+
+    // useEffect(() => {
+    //     getData();
+    // }, [])
     
 
     return (

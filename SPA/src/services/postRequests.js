@@ -1,27 +1,34 @@
 
 import { post, get, del , put} from "./requester";
 
-export async function createCenter(data, userId){
+export async function createCenter(data, userToken){
     try {
-        await post('/data/centers/create', data);
+        const result = await post('/data/centers/create', data,userToken);
+       
     } catch (err) {
-        console.error(err.message)
+     console.log('create center' + err)
+        throw err
     }
 
 
 }
-export async function deleteCenter(postId){
+export async function deleteCenter(postId, userToken){
 try {
-    await del(`/data/centers/${postId}`)
+    await del(`/data/centers/${postId}`, userToken)
 } catch (err) {
-    console.error(err.message)
+    // console.error(err.message)
+    throw err
 }
 }
-export async function editCenter(data,postId){
+export async function editCenter(data,postId, userToken){
+    
     try {
-        await put(`/data/centers/${postId}`, data)
+       const result =  await put(`/data/centers/${postId}`, data,userToken);
+       console.log(result)
     } catch (err) {
-        console.error(err.message)
+        // console.error(err.message)
+        // console.log('edit center' + err)
+        throw err
         
     }
     
@@ -31,7 +38,7 @@ export async function getAllCenters(){
     try {
        return await get('/data/centers/');
     } catch (err) {
-        throw err.message;
+        throw err;
     }
 }
 
@@ -43,15 +50,15 @@ try {
    
     
 } catch (err) {
-    throw err.message;
+    throw err;
     
 }
 }
 
- export async function becomeVolunteer(centerId, userId){
+ export async function becomeVolunteer(centerId, userToken){
 try {
-    return await post(`/data/centers/${centerId}/volunteer`)
+    return await post(`/data/centers/${centerId}/volunteer`, undefined , userToken)
 } catch (err) {
-    throw err.message;
+    throw err;
 }
  }

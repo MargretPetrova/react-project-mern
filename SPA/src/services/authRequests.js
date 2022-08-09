@@ -12,7 +12,9 @@ export async function logIn(email, password) {
         id: result._id,
         token: result.accessToken
     };
-    authService.setUser(userInfo);
+    return result;
+    // authService.setUser(userInfo);
+    // return userInfo;
     // return {msg:'Success', data: userInfo}
 }
 
@@ -29,16 +31,24 @@ export async function register(firstName, lastName, email, password) {
         id: result._id,
         token: result.accessToken
     };
-    authService.setUser(userInfo);
+    // authService.setUser(userInfo);
+    return result
 
 }
 export async function logOut() {
-    await get('/users/logout');
-    authService.delUser();
-}
-export async function getCurrentUser(userId){
     try {
-        return await get(`/users/profile`)
+        await get('/users/logout' );
+        
+    } catch (err) {
+        throw err.message
+    }
+    
+    // authService.delUser();
+}
+export async function getCurrentUser(token){
+    try {
+       
+        return await get(`/users/profile`, token)
     } catch (err) {
         throw err.message
     }

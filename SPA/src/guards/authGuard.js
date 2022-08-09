@@ -10,7 +10,7 @@ export function isOwnerFunc(ownerId, userId){
 export function isVolunteer(volunteers, userId){
     if(volunteers){
         let finded =volunteers.find(x=> x._id == userId)
-        return finded
+        return finded;
     }
 }
   

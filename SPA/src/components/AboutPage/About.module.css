@@ -50,11 +50,11 @@
 }
 .paragraf{
    padding-top: 2rem;
-    display:flex;
+    /* display:flex; */
     margin: -20px 50px 50px 20px;
     
 }
-.paragraf p{
+.paragraf>p{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     position: relative;
     font-size: 1.3rem;

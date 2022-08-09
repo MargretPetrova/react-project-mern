@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import styles from '../items/CardItems.module.css'
+import styles from './CardItems.module.css'
 export default function ListItems({data}) {
     const navigate = useNavigate();
     let linkTo=''
@@ -21,7 +21,7 @@ navigate(`${linkTo}`)
         <div className={styles.cardHome}>
             <h2>{data.name}</h2>
             <div className={styles.cardImage}><img src={data.image} /></div>
-            <p>Some description</p>
+            <p>{data.description}</p>
             <div className={styles.btn}>
             <button className={styles.details} onClick={onDetailsHandler}>Details</button>
             </div>

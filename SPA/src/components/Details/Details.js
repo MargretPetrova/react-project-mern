@@ -7,14 +7,16 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { isOwnerFunc, isVolunteer } from '../../guards/authGuard';
 import { NotificationContext } from '../../contexts/NotificationContext';
+import convertError from '../../helpers/errorConverter';
 
 export default function Details({ }) {
 
     useEffect(() => {
         document.title = 'Details Page'
+        getCenterById();
     }, []);
-    const navigate = useNavigate()
 
+    const navigate = useNavigate()
     const{addNotifications, types} = useContext(NotificationContext)
 
     const { pathname } = useLocation();
@@ -26,6 +28,7 @@ export default function Details({ }) {
 
    
     async function getCenterById() {
+        
         try {
             const result = await getCenter(centerId);
             setCenter(result);
@@ -33,31 +36,30 @@ export default function Details({ }) {
            setVolunteers(allVolunteers);
           
         } catch (err) {
+            addNotifications( convertError(err) , types.error)
             console.error(err.message)
             navigate('/404')
         }
     }
 
-    useEffect(() => {
-        getCenterById();
-    }, [])
-
-
-
     async function onDeleteHandler(e) {//not finished
         e.preventDefault();
         console.log('onDeleteHandler');
+       
 
-        if (!isOwnerFunc(center.ownerId, userInfo.user.id)) {
-            throw new Error('Sorry, only the owner can delete this')
-        }
+        
         try {
-            await deleteCenter(centerId);
+            if (!isOwnerFunc(center.ownerId, userInfo.user._id)) {
+                throw new Error('Sorry, only the owner can delete this')
+            }
+
+            await deleteCenter(centerId, userInfo.user.accessToken);
             addNotifications('Successfully deleted', types.success)
             navigate('/catalog')
 
         } catch (err) {
-            addNotifications(err.message, types.success)
+
+            addNotifications(convertError(err), types.success)
             console.error(err.message)
         }
 
@@ -67,15 +69,15 @@ export default function Details({ }) {
     async function onBecomeVolunteerHandle(e) {
         e.preventDefault();
         console.log('onBecomeAVolunteerHandle');
-        console.log(isOwnerFunc(center.ownerId, userInfo.user.id))
-        if (isOwnerFunc(center.ownerId, userInfo.user.id)) {
+       
+        if (isOwnerFunc(center.ownerId, userInfo.user._id)) {
             throw new Error('Sorry, you cant become a volunteer')
         }
         if (!userInfo.user) {
             throw new Error('Sorry, only logged in users can become a volunteers')
         }
         try {
-            const result = await becomeVolunteer(centerId, userInfo.user.id);
+            const result = await becomeVolunteer(centerId, userInfo.user.accessToken);
             getCenterById();
             addNotifications('Successfully become a volunteer in this center', types.success)
             
@@ -85,10 +87,11 @@ export default function Details({ }) {
         }
 
     }
+    
 
     let guestButtons = (
         <>
-            {(userInfo && isVolunteer(center.volunteers, userInfo.user.id)) ? <button className={styles.alreadyVolunteer}>You are already a volunteer in this center</button>
+            {(userInfo.user && isVolunteer(center.volunteers, userInfo.user._id)) ? <button className={styles.alreadyVolunteer}>You are already a volunteer in this center</button>
                 : <button className={styles.volunteer} onClick={onBecomeVolunteerHandle}>Become a volunteer</button>}
 
             <button className={styles.donate}><Link to={`/catalog/${centerId}/donate`}>Donate</Link></button>
@@ -122,8 +125,8 @@ export default function Details({ }) {
                             </div>
                         </div>
                         <div className={styles.btn}>
-                            {userInfo
-                                ? (isOwnerFunc(center.ownerId, userInfo.user.id) ? ownerButtons : guestButtons)
+                            {userInfo.user
+                                ? (isOwnerFunc(center.ownerId, userInfo.user._id) ? ownerButtons : guestButtons)
                                 : null}
 
                         </div>

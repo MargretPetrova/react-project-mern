@@ -1,17 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
-import FormItems from '../items/FormItems'
+import FormItems from '../Items/FormItems'
 import uniqid from 'uniqid';
-import styles from '../createCenter/CreateCenter.module.css'
+import styles from './CreateCenter.module.css'
 import { createCenter } from "../../services/postRequests";
 import { useNavigate , Navigate} from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { NotificationContext } from "../../contexts/NotificationContext";
-
+import convertError from "../../helpers/errorConverter";
 
 export default function CreateCenter() {
+
     const navigate = useNavigate();
 
-    const{ addNotifications, types} = useContext(NotificationContext)
+    const{userInfo}= useContext(AuthContext)
+
+    const{ addNotifications, types} = useContext(NotificationContext);
 
    
     useEffect(()=>{
@@ -42,21 +45,24 @@ export default function CreateCenter() {
         let image = formData.get('image').trim();
         let description = formData.get('description').trim()
 
-        console.log(name, location, address, image, phone, description)
-        if (name=='' || location==''|| address=='' || description=='' || phone==''|| image=='' ) {
-            throw new Error('All fields are required') 
-         }
-
         try {
-            await createCenter({name, location, address, phone, image, description})
+
+            if (name=='' || location==''|| address=='' || description=='' || phone==''|| image=='' ) {
+                throw new Error('All fields are required') 
+             }
+
+            await createCenter({name, location, address, phone, image, description}, userInfo.user.accessToken)
             addNotifications('Successfully registered center', types.success)
             navigate('/catalog')
+
         } catch (err) {
-            addNotifications(err.message, types.error)
+
+            addNotifications(convertError(err), types.error)
             console.error(err.message)
         }
 
     }
+
     return (
         
         <main className={styles.body}>

@@ -5,7 +5,7 @@ module.exports = () => async (req, res, next) => {
     const id = req.params.id;
     try {
         const center = await getById(id).lean();
-        center._ownerId = center.owner;
+        // center._ownerId = center.owner;
         res.locals.center = center;
         next();
     } catch (err) {

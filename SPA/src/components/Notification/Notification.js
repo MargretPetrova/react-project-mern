@@ -5,7 +5,9 @@ import styles from '../Notification/Notification.module.css'
 
 export default function Notification() {
     const { notifications, types } = useContext(NotificationContext)
+
     let errorBoolean = false;
+    
     if(notifications.type == 'Error'){
         errorBoolean = true;
     }

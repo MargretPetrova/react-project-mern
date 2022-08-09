@@ -1,7 +1,8 @@
 import { AuthContext } from './contexts/AuthContext';
 import { NotificationContext } from './contexts/NotificationContext';
+import {CookiesProvider} from 'react-cookie'
 import { Header } from './components/Header/Header';
-import CreateCenter from './components/createCenter/CreateCenter';
+import CreateCenter from './components/CreateCenter/CreateCenter';
 import Home from './components/Home/Home.js';
 import Register from './components/Register/Register'
 import Login from './components/Login/Login';
@@ -13,27 +14,47 @@ import styles from './App.css';
 import * as authService from './services/authService'
 import { useState, useEffect } from 'react'
 import { Routes, Route, Navigate } from "react-router-dom";
-import { ProtectedRoute } from './components/ProtectedRoute';
-import { ProtectedRouteFromUser } from './components/ProtectedRouteFromUser'
+import { ProtectedRoute } from './components/ProtectedRoutes/ProtectedRoute';
+import { ProtectedRouteFromUser } from './components/ProtectedRoutes/ProtectedRouteFromUser'
 import { Edit } from './components/Edit/Edit';
 import ErrorPage from './components/404/ErrorPage';
 import Notification from './components/Notification/Notification';
 import ProfilePage from './components/ProfilePage/ProfilePage';
+import {useCookies} from 'react-cookie'
 // import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 
 function App() {
-   
-  const [userInfo, setUserInfo] = useState()
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
-  const isLoggedIn = () => {
-    const user = authService.getUser()
-    setUserInfo({ user });
-    
+  //  removeCookie('user')
+  
+  const [userInfo, setUserInfo] = useState({user:''});
+  // const onSet =()=>{
+  //   setUserInfo(cookies.user)
+  // }
+
+  useEffect(()=>{
+if(cookies.user != undefined){
+  setUserInfo({user: cookies.user})
+}
+  },[cookies])
+
+  // setUserInfo(cookies)
+
+  const isLoggedIn = (authData) => {
+    setCookie('user',authData )
+    // setUserInfo({userInfo: cookies.user})
+    // const user = authService.getUser()
+    // setUserInfo({ user });
+    // setUserInfo({userInfo: infoFromCookies.user})
   }
 
   const isLoggedOut = () => {
-    authService.delUser()
-    setUserInfo({ })
+    // authService.delUser()
+    // setUserInfo({});
+    removeCookie('user')
+    setUserInfo({userInfo:''});
+    
   }
   const types = {
     error: 'Error',
@@ -42,6 +63,7 @@ function App() {
     success: 'Success',
 };
 const initialNotificationsState = {show: false, message: '', type: types.error}
+
 const [notifications, setNotifications] = useState(initialNotificationsState);
 const addNotifications=(dataMsg, dataType)=>{
     setNotifications({show:true, message: dataMsg, type: dataType})
@@ -50,9 +72,11 @@ const addNotifications=(dataMsg, dataType)=>{
     }, 4000);
 
 }
- 
+  // console.log(cookies.user)
+    // console.log(userInfo)
   return (
-    <AuthContext.Provider value={{ userInfo, isLoggedIn, isLoggedOut }}>
+    <CookiesProvider>
+    <AuthContext.Provider value={{ userInfo , isLoggedIn, isLoggedOut}}>
       <NotificationContext.Provider value={{notifications,addNotifications, types }}>
       <div className={styles.flexCcontainer}>
       
@@ -96,6 +120,7 @@ const addNotifications=(dataMsg, dataType)=>{
       </footer>
       </NotificationContext.Provider>
     </AuthContext.Provider>
+    </CookiesProvider>
 
 
   )

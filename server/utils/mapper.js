@@ -1,4 +1,5 @@
 function mapErrors(err) {
+    
     if (Array.isArray(err)) {
         return err.join('\n');
     } else if (err.name == 'ValidationError') {

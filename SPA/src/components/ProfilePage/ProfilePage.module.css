@@ -103,6 +103,9 @@
     font-weight: lighter;
     overflow: hidden;
 }
+.text>p>a{
+    color:green;
+}
 
 .btn {
     padding-top: 20px;

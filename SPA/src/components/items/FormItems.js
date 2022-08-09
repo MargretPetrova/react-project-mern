@@ -1,4 +1,4 @@
-import styles from '../items/FormItems.module.css'
+import styles from './FormItems.module.css'
 export default function ListItems({ data }) {
     let type = 'text';
     if (data.name == 'password' || data.name == 'rePassword') {

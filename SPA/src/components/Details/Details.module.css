@@ -118,7 +118,7 @@
 }
 
 .btn {
-    padding: 40px;
+    padding:20px;
     text-align: center;
     margin-top: 15em;
     position: relative;
@@ -183,6 +183,10 @@
 .donate {
     cursor:pointer;
     background-color:  #9591af;
+}
+.donate a{
+    text-decoration: none;
+    color: white;
 }
 
 .donate:hover {

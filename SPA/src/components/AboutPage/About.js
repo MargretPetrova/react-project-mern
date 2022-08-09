@@ -20,10 +20,11 @@ export default function About() {
             </section>
             <div className={styles.paragraf}>
     <p>This site is for support for children and families of Ukraine.
-                            There are many actions we can take as individuals to help Ukrainians who have fled the country.
+                            There are many actions we can take as individuals to help Ukrainians who have fled the country.</p>
                             <p>The first step anyone can take to help is to learn about the issue and continue to stay informed.
                                 </p>
                                 <p>A simple steps you can take to help  is by opening </p>
+                                <p>
                             <Link to="/create" className={styles.links}>   OWN HELP CENTER  </Link>
                             , become a
                             <Link to="/catalog" className={styles.links}>   VOLUNTEER   </Link>
