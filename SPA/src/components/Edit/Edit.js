@@ -9,6 +9,7 @@ import { isOwnerFunc } from '../../guards/authGuard';
 import { AuthContext } from '../../contexts/AuthContext';
 import { NotificationContext } from '../../contexts/NotificationContext';
 import convertError from '../../helpers/errorConverter';
+import { createInputValidation } from '../../helpers/inputValidation';
 
 function Edit() {
     useEffect(() => {
@@ -39,11 +40,6 @@ function Edit() {
         }
     }
 
-    // useEffect(() => {
-    //     getCenterById()
-    // }, [])
-
-
     async function onEditHandler(e) {
         e.preventDefault();
         console.log('onEditHandler');
@@ -59,12 +55,12 @@ function Edit() {
       
         
         try {
+            console.log(typeof phone)
             if (!isOwnerFunc(center.ownerId, userInfo.user._id)) {
                 throw new Error('Sorry, only the owner can edit this')
             }
-              if (name == '' || location == '' || address == '' || description == '' || phone == '' || image == '') {
-            throw new Error('All fields are required')
-        }
+      
+        createInputValidation(name, location, address,phone,image, description)
         let data = { name, location, address, phone, image, description }
         
             await editCenter(data, centerId, userInfo.user.accessToken)

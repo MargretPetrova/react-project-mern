@@ -7,6 +7,7 @@ import { useNavigate , Navigate} from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { NotificationContext } from "../../contexts/NotificationContext";
 import convertError from "../../helpers/errorConverter";
+import { createInputValidation } from "../../helpers/inputValidation";
 
 export default function CreateCenter() {
 
@@ -46,10 +47,7 @@ export default function CreateCenter() {
         let description = formData.get('description').trim()
 
         try {
-
-            if (name=='' || location==''|| address=='' || description=='' || phone==''|| image=='' ) {
-                throw new Error('All fields are required') 
-             }
+            createInputValidation(name, location, address, phone, image, description)
 
             await createCenter({name, location, address, phone, image, description}, userInfo.user.accessToken)
             addNotifications('Successfully registered center', types.success)

@@ -30,10 +30,7 @@ export default function Catalog() {
         }
     }
 
-    // useEffect(() => {
-    //     getData();
-    // }, [])
-    
+  
 
     return (
         <main className={styles.body}>

@@ -20,6 +20,7 @@ router.post('/register', isGuest(), async (req, res) => {
         }
 
         const result = await register(firstName.trim(), lastName.trim(),email.trim().toLowerCase(), password.trim() );
+
         attachCookie(result, res)
         res.status(201).json(result);
     } catch (err) {
@@ -32,8 +33,9 @@ router.post('/register', isGuest(), async (req, res) => {
 router.post('/login', isGuest(), async (req, res) => {
     try {
         const result = await login(req.body.email.trim(), req.body.password.trim());
-        attachCookie(result, res)
-       
+        // console.log(result)
+       const cook =  attachCookie(result, res)
+    //    console.log(cook)
         res.json(result);
     } catch (err) {
         console.error(err.message);

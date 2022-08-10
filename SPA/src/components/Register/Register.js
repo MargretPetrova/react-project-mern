@@ -16,6 +16,7 @@ import {
 import { AuthContext } from "../../contexts/AuthContext";
 import { NotificationContext } from "../../contexts/NotificationContext";
 import convertError from "../../helpers/errorConverter";
+import { registerInputValidation } from "../../helpers/inputValidation";
 
 export default function Register() {
     useEffect(()=>{
@@ -44,13 +45,8 @@ export default function Register() {
         let rePassword = formData.get('rePassword').trim()
 
         try {
-            if (email == '' || password == '' || firstName == '' || lastName == '' || rePassword == "") {
-                throw new Error(`All fields are requred`)
-            }
-            if (password != rePassword) {
-                throw new Error(`Enter correct password`)
-
-            }
+           registerInputValidation(email, password, firstName, lastName, rePassword)
+           
             const result = await register(firstName, lastName, email, password);
             isLoggedIn(result)
             addNotifications('Successfully registration', types.success)

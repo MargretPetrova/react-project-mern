@@ -12,6 +12,7 @@ import ErrorContainer, { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
 import { NotificationContext } from "../../contexts/NotificationContext";
 import {useCookies} from 'react-cookie';
 import convertError from "../../helpers/errorConverter";
+import { loginInputValidation } from "../../helpers/inputValidation";
 
 export default function Login() {
 
@@ -37,9 +38,8 @@ let password = formData.get('password').trim();
 
 
 try {
-    if (email=='' || password=='') {
-        throw new Error(`All fields are requred`)
-    }
+   
+    loginInputValidation(email, password)
    
     const result = await logIn(email, password);
 
