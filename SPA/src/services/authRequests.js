@@ -13,9 +13,7 @@ export async function logIn(email, password) {
         token: result.accessToken
     };
     return result;
-    // authService.setUser(userInfo);
-    // return userInfo;
-    // return {msg:'Success', data: userInfo}
+  
 }
 
 export async function register(firstName, lastName, email, password) {
@@ -31,7 +29,7 @@ export async function register(firstName, lastName, email, password) {
         id: result._id,
         token: result.accessToken
     };
-    // authService.setUser(userInfo);
+   
     return result
 
 }
@@ -43,7 +41,7 @@ export async function logOut() {
         throw err.message
     }
     
-    // authService.delUser();
+  
 }
 export async function getCurrentUser(token){
     try {

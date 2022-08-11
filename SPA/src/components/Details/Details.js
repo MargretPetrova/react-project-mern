@@ -119,7 +119,7 @@ export default function Details({ }) {
                                 <h1> {center.name}</h1>
                                 <h2>Location: {center.location}</h2>
                                 <h4>Address: {center.address}</h4>
-                                <h4>Phone Number: {center.phone}</h4>
+                                <h4>Phone Number: 0{center.phone}</h4>
                                 <h5>Description:</h5>  <p>{center.description}</p>
                                 <h5>Volunteers in this center:</h5> <p>{volunteers}</p>
                             </div>

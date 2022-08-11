@@ -53,7 +53,7 @@
 .text h1 {
     margin: 0 0 0 17px;
     padding-top: 52px;
-    padding-bottom: 25px;
+    padding-bottom: 5px;
     font-size: 50px;
     color: #282152;
     font-weight: 300;
@@ -65,7 +65,7 @@
 }
 
 .text h2 {
-    margin: 8px 0 47px 18px;
+    margin:5px 0 10px 18px;
     font-size: 15px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     /* text-transform: uppercase; */
@@ -76,7 +76,7 @@
 
 .text h4 {
     margin: 8px 0 10px 18px;
-    padding-bottom: 25px;
+    padding-bottom: 5px;
     font-size: 15px;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     /* text-transform: uppercase; */
@@ -110,11 +110,11 @@
     font-family: Arial, Helvetica, sans-serif;
     color: #282152;
     line-height: 1.6em;
-    margin-bottom: auto;
+    /* margin-bottom: auto; */
     font-size: 15px;
     font-weight: lighter;
     overflow: hidden;
-    padding-bottom: 35px;
+    padding-bottom: 5px;
 }
 
 .btn {
@@ -147,7 +147,7 @@
     display: block;
     margin-left: 30px;
     margin-right: 20px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 
 }
 

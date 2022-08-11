@@ -32,7 +32,7 @@ router.post('/create', isAuth(), async (req, res) => {
         res.status(201).json(result);
 
     } catch (err) {
-        // console.error(err.message);
+        
         const errormsg = mapErrors(err);
       
          res.status(400).json( errormsg );
@@ -42,12 +42,12 @@ router.post('/create', isAuth(), async (req, res) => {
     }
 });
 
-router.get('/:id', preload(), (req, res) => {// getails
+router.get('/:id', preload(), (req, res) => {
     const center = res.locals.center;
     res.json(center);
 });
 
-router.put('/:id', preload(), isOwner(), async (req, res) => {// edit
+router.put('/:id', preload(), isOwner(), async (req, res) => {
     const centerId = req.params.id;
     const center = {
         name: req.body.name,

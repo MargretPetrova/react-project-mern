@@ -13,7 +13,7 @@ import Details from './components/Details/Details'
 import styles from './App.css';
 import * as authService from './services/authService'
 import { useState, useEffect } from 'react'
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import { ProtectedRoute } from './components/ProtectedRoutes/ProtectedRoute';
 import { ProtectedRouteFromUser } from './components/ProtectedRoutes/ProtectedRouteFromUser'
 import { Edit } from './components/Edit/Edit';
@@ -21,9 +21,10 @@ import ErrorPage from './components/404/ErrorPage';
 import Notification from './components/Notification/Notification';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import {useCookies} from 'react-cookie'
-// import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
+
 
 function App() {
+  
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [userInfo, setUserInfo] = useState({user:''});
 
@@ -34,16 +35,13 @@ if(cookies.user != undefined){
   },[cookies])
 
   const isLoggedIn = (authData) => {
+
     setCookie('user',authData )
-    // setUserInfo({userInfo: cookies.user})
-    // const user = authService.getUser()
-    // setUserInfo({ user });
-    // setUserInfo({userInfo: infoFromCookies.user})
+
   }
 
   const isLoggedOut = () => {
-    // authService.delUser()
-    // setUserInfo({});
+  
     removeCookie('user')
     setUserInfo({userInfo:''});
     
@@ -55,15 +53,15 @@ if(cookies.user != undefined){
       <NotificationProvider>
       <div className={styles.flexCcontainer}>
         {/* <ErrorBoundary> */}
-        <Header />
+        <Header data-testId="header"/>
           <Notification/>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home/>} />
           <Route path="/about" element={<About />} />
 
           <Route element={<ProtectedRouteFromUser />}>
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login/> } />
+          <Route path="/login" element={<Login /> } />
           </Route>
 
           <Route path="/catalog" element={<Catalog />} />

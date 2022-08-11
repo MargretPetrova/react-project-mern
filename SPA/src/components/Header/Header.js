@@ -11,6 +11,7 @@ import convertError from '../../helpers/errorConverter';
 const Header = ({ }) => {
   const navigate = useNavigate();
   const { notifications, addNotifications, types } = useContext(NotificationContext)
+  
   const { userInfo, isLoggedOut } = useContext(AuthContext)
 
   async function onLogoutHandler() {

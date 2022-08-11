@@ -45,11 +45,11 @@ export default function ProfilePage(){
                                 <h2>Email:</h2><p> {userData?.email}</p>
                                 <h2>Owner Of:</h2>
                                 {userData?.ownerOf.length
-                                ? <p>{userData?.ownerOf.map(c => <Link  key={c._id} to={`/catalog/${c._id}`} >{c.name}</Link>)}, </p> 
+                                ? <p>{userData?.ownerOf.map(c => <Link  key={c._id} to={`/catalog/${c._id}`} > {c.name} ,</Link>)} </p> 
                                 : <p>You dont have own help center yet but if you want <Link to={`/create`} >click here</Link>.</p>}
                                 <h2>Volunteer in:</h2>
                                   {userData?.volunteerIn.length
-                                ? <p>{userData?.volunteerIn.map(c => <Link  key={c._id} to={`/catalog/${c._id}`} >{c.name}</Link>)}, </p> 
+                                ? <p>{userData?.volunteerIn.map(c => <Link  key={c._id} to={`/catalog/${c._id}`} > {c.name} ,</Link>)}  </p> 
                                 : <p>You are not a volunteer in any help center yet.</p>}
                             </div>
                         </div>

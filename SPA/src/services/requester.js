@@ -37,11 +37,7 @@ function createOptions(method = 'get', data,userToken) {
         options.body = JSON.stringify(data);
 
     }
-    // const userInfo = authService.getUser()
-    // if (userInfo != null) {
-    // options.headers['X-Authorization'] = userInfo.token;//////????????????????????????????????
-        
-    // }
+
    
     if (userToken != null) {
         options.headers['X-Authorization'] = userToken;
