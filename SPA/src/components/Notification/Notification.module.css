@@ -9,7 +9,7 @@
   text-align: center;
   border-radius: 1rem;
   color: rgb(255, 255, 255);
-  /* font-style: italic; */
+
   height: auto;
   width: 500px;
   box-shadow: 0 2px 8px rgb(204, 204, 204);
@@ -17,16 +17,16 @@
 }
 
 .errorContainer>p {
-  /* background: rgb(173, 168, 168); */
+  
   font-size: 23px;
-  /* padding: 20px; */
+
   height: auto;
   color:rgb(6, 109, 12);
  
 }
 .errorss>p{
     font-size: 23px;
-    /* padding: 20px; */
+   
     height: auto;
     color:rgb(230, 11, 11); 
 

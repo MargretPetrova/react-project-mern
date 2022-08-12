@@ -9,10 +9,9 @@ async function request(url, options) {
       
         if (response.ok == false) {
             const error = await response.json();
-          
-            throw new Error(error);
+        //   console.log(error)
+            throw new Error(error.message);
         }
-
         try {
             const data = await response.json();
             return data;
@@ -20,7 +19,7 @@ async function request(url, options) {
             return response;
         }
     } catch (err) {
-        
+        // console.log(err)
         throw err.message;
     }
 }
@@ -30,21 +29,17 @@ function createOptions(method = 'get', data,userToken) {
         method,
         headers: {}
     }
-    
     if (data != undefined) {
         options.headers['Content-Type'] = 'application/json';
         
         options.body = JSON.stringify(data);
 
     }
-
    
     if (userToken != null) {
         options.headers['X-Authorization'] = userToken;
             
         }
-       
-      
     return options;
 
 }

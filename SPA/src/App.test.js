@@ -39,22 +39,3 @@ test("render the footer", ()=>{
   expect(getByText("@help")).toBeTruthy()
 
 })
-// test('should render a Link, checks for href attributes', () => {
-//   render(<Router>,<App />,</Router>);
-//   const linkLogin = screen.getByText(/Login/i);
-//   expect(linkLogin).toHaveAttribute('href', '/login')
-// })
-// test('Test click event on login link', () => {
-//   render(
-//     <Router>
-//       <App />,
-//     </Router>,
-//   );
-//   const mockClickFn = jest.fn()
-//    const linkLogin = screen.getByText(/Login/i);
-//    linkLogin.addEventListener('click', mockClickFn)
-//   linkLogin.click()
-//   expect(mockClickFn).toBeCalled();
-// });
-
-

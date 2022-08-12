@@ -27,9 +27,8 @@ export default function CreateCenter() {
         { id: uniqid(), text: 'Location', placeholder: 'Sofia', name: 'location' },
         { id: uniqid(), text: 'Address', placeholder: 'Vitoshka 10', name: 'address' },
        
-        { id: uniqid(), text: 'Phone Number', placeholder: '+359 88 256 3421', name: 'phone' },
-        { id: uniqid(), text: 'Image', placeholder: 'http://', name: 'image' },//Needed Volunteers
-        // { id: uniqid(), text: 'Needed Volunteers', placeholder: '2', name: 'neededVolunteers' },
+        { id: uniqid(), text: 'Phone Number', placeholder: '0896 32 24 57', name: 'phone' },
+        { id: uniqid(), text: 'Image', placeholder: 'http://', name: 'image' },
         { id: uniqid(), text: 'Description', placeholder: 'Some description about the center here...', name: 'description' }
 
 

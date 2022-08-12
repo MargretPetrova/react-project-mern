@@ -11,7 +11,7 @@ import convertError from '../../helpers/errorConverter';
 const Header = ({ }) => {
   const navigate = useNavigate();
   const { notifications, addNotifications, types } = useContext(NotificationContext)
-  
+
   const { userInfo, isLoggedOut } = useContext(AuthContext)
 
   async function onLogoutHandler() {
@@ -30,8 +30,6 @@ const Header = ({ }) => {
     }
   }
 
-
-
   let guestNavigation = (
     <>
       <li><Link className={styles.links} to="/login">Login</Link></li>
@@ -48,7 +46,6 @@ const Header = ({ }) => {
   );
 
   return (
-
 
     <nav className={styles.navigation}>
       <Link to="/about">About</Link>
@@ -67,7 +64,5 @@ const Header = ({ }) => {
 
   )
 }
-
-
 
 export { Header };

@@ -23,6 +23,7 @@ document.title = 'Login Page';
     const navigate = useNavigate();
      const {userInfo, isLoggedIn} = useContext(AuthContext);
     const{notifications, addNotifications, types} = useContext(NotificationContext)
+   
 
     const [inputs, setInputs]= useState([
         {id: uniqid(),text: 'Email',name: 'email', placeholder: 'magi@abv.bg'},
@@ -50,9 +51,11 @@ try {
 } catch (err) {
 
     addNotifications(convertError(err), types.error )
+    formData.set('email', email)
     throw err.message
     
 }
+
 }
 
    

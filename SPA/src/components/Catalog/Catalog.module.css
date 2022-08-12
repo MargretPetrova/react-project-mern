@@ -5,16 +5,12 @@
 }
 .aboutContainer{
     text-align: center;
-    /* background-image: url('../../../public/static/images/pray.png'); */
     height:300px;
     width: 100%;
     margin-top: -5.5rem;
     background-image: url('../../../public/static/images/hand2.jpg');
-   
     background-repeat: no-repeat;
     background-size: cover;
-    
-    
    
 }
 .body>h1{

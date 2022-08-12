@@ -55,7 +55,7 @@ function Edit() {
       
         
         try {
-            console.log(typeof phone)
+            
             if (!isOwnerFunc(center.ownerId, userInfo.user._id)) {
                 throw new Error('Sorry, only the owner can edit this')
             }

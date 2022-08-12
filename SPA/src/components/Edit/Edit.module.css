@@ -8,7 +8,7 @@
 
 .body {
     background-image: url('../../../public/static/images/hand2.jpg');
-    /* background: linear-gradient(#282152,#5b4cb1); */
+ 
     display: flow-root;
     margin-top: -5rem;
     background-repeat: no-repeat;
@@ -20,16 +20,14 @@
     margin: 10rem auto;
     display: flex;
     border-radius: 0.1em;
-    /* box-shadow: 0px 0px 16px rgb(253, 253, 253); */
+   
     flex-direction: column;
     width: 100%;
     max-width: 450px;
     padding: .55rem;
     background: whitesmoke;
 }
-/* .boxs:hover{
-    box-shadow: 0px 0px 80px rgb(253, 253, 253);
-} */
+
 .boxHeading{
    
     display: flex;
