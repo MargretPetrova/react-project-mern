@@ -19,7 +19,7 @@ export const NotificationProvider = ({ children }) => {
         setNotifications({ show: true, message: dataMsg, type: dataType })
         setTimeout(() => {
             setNotifications(basicState);
-        }, 4000);
+        }, 2000);
 
     }
 

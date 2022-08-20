@@ -2,14 +2,28 @@ const EMAIL_PATTERN = /^([a-zA-Z]+)@([a-zA-Z]+)\.([a-zA-Z]+)$/;
 const URL_PATTERN = /^https?:\/\/(.+)$/
 const PHONE_PATTERN = /^0?[0-9]{9}$/
 
+
+ export function emailValidation(email){
+    if (!EMAIL_PATTERN.test(email)) {
+        return false;
+    }
+ }
+
+ export function passwordValidation(pass){
+    if (pass.length < 3) {
+       return false;
+    }
+ }
 export function loginInputValidation(email, password) {
     if (email == '' || password == '') {
         throw new Error(`All fields are requred`)
     }
-    if (!EMAIL_PATTERN.test(email)) {
+    if (!emailValidation(email)) {
+       
         throw new Error('Email must be valid and contain only english letters!')
     }
-    if (password.length < 3) {
+    if (!passwordValidation(password)) {
+        
         throw new Error('Password must be at least 3 characters')
     }
 }
