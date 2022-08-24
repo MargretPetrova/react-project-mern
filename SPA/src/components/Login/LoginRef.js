@@ -1,3 +1,4 @@
+
 import React, { useState, useContext, useRef } from "react";
 import styles from "./Login.module.css"
 import { useNavigate } from 'react-router-dom';
@@ -15,18 +16,20 @@ import { NotificationContext } from "../../contexts/NotificationContext";
 import convertError from "../../helpers/errorConverter";
 import { emailValidation, loginInputValidation, passwordValidation } from "../../helpers/inputValidation";
 
-let emailError =false;
+
+
 export default function Login() {
 
     useEffect(() => {
-        document.title = 'Login Page';
+        document.title = 'Login Page'
     }, [])
 
     const navigate = useNavigate();
     const { isLoggedIn } = useContext(AuthContext);
-    const { addNotifications, types } = useContext(NotificationContext);
+    const { notifications , addNotifications, types } = useContext(NotificationContext);
 
     const [emailValue, setEmailValue] = useState();
+    const [errorEmail, setErrorEmail] = useState({ hasError: false, msg: '' });
 
 
     const emailInputRef = useRef();
@@ -37,11 +40,15 @@ export default function Login() {
         let formData = new FormData(e.currentTarget);
         let email = formData.get('email').trim();
         let password = formData.get('password').trim();
-        setEmailValue(email)
+        setEmailValue(email);
         try {
 
-            loginInputValidation(email, password)
-
+            const areValid = loginInputValidation(email, password)
+            
+            if (areValid !== true) {
+                passwordInputRef.current.focus();
+                 throw new Error(areValid.error)
+            }
             const result = await logIn(email, password);
 
             isLoggedIn(result);
@@ -49,39 +56,39 @@ export default function Login() {
             navigate('/')
 
         } catch (err) {
-
+            
             addNotifications(convertError(err), types.error)
             formData.set('email', email)
             throw err.message
-
         }
+       
 
     }
 
     function validateEmailHandler(e) {
         e.preventDefault();
+        setEmailValue(e.target.value)
 
-        if (emailValidation(e.target.value) === false) {
-            emailInputRef.current.focus();
+        if (e.target.validity.patternMismatch) {
+            setErrorEmail({ hasError: true, msg: 'Email must contains only en letters and must be in correct format' })
             
-            e.target.style.borderColor = 'red';
         } else {
-            e.target.style.borderColor = ''; 
+            setErrorEmail({ hasError: false, msg: '' })
         }
+
     }
 
     const validatePassHandler = (e) => {
         e.preventDefault();
-        if (passwordValidation(e.target.value) === false) {
-            
-            passwordInputRef.current.focus();
-            e.target.style.borderColor = 'red';
-            // e.target.invalid = true
-        } else {
-            e.target.style.borderColor = ''
-        }
 
     }
+    // const onChangeHandler = (e) => {
+    //     e.preventDefault();
+    //     console.log('onChange')
+
+    // }
+
+
 
     return (
         <main className={styles.body}>
@@ -103,9 +110,12 @@ export default function Login() {
                             name='email'
                             placeholder='margi@abv.bg'
                             value={emailValue}
-                            // pattern='^([a-zA-Z]+)@([a-zA-Z]+)\.([a-zA-Z]+)$'
+                            pattern='^([a-zA-Z]+)@([a-zA-Z]+)\.([a-zA-Z]+)$'
+                            type='text'
                             onBlur={validateEmailHandler}
-                           
+                            // onChange={onChangeHandler}
+                            error={errorEmail}
+
                         />
                         <Input
                             ref={passwordInputRef}
@@ -115,10 +125,9 @@ export default function Login() {
                             placeholder='*********'
                             value=''
                             type='password'
-                           
+                            // isValid={passwordValid.isValid}
                             onBlur={validatePassHandler}
                         />
-
 
                         <div className={styles.action}>
                             <button className={styles.actionButton}>Login</button>

@@ -1,5 +1,5 @@
 import React, {
-    useState, useEffect, useContext
+    useState, useEffect, useContext, useRef
 } from "react";
 import styles from '../Register/Register.module.css'
 import {
@@ -8,7 +8,7 @@ import {
 import {
     Link
 } from 'react-router-dom'
-import FormItems from '../Items/FormItems'
+
 import uniqid from 'uniqid'
 import {
     register
@@ -17,19 +17,27 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { NotificationContext } from "../../contexts/NotificationContext";
 import convertError from "../../helpers/errorConverter";
 import { registerInputValidation } from "../../helpers/inputValidation";
+import Input from "../Items/Input";
+import { emailValidation, passwordValidation, namesValidation} from "../../helpers/inputValidation";
+
 
 export default function Register() {
     useEffect(()=>{
         document.title = 'Register Page'
             }, [])
-    const [inputs, setInputs] = useState([{id: uniqid(),text: 'First Name',name: 'firstName',placeholder: 'Margret' },
-    {id: uniqid(),text: 'Last Name',name: 'lastName',placeholder: 'Ivanova'},
-    {id: uniqid(),text: 'Email',name: 'email',placeholder: 'magi@abv.bg'},
-    {id: uniqid(),text: 'Password',name: 'password',placeholder: '******'},
-    {id: uniqid(),text: 'Repeat Password',name: 'rePassword',placeholder: '******'}
 
+             const firstNameInputRef = useRef();
+            const lastNameInputRef = useRef();
+            const emailInputRef = useRef();
+            // const passwordInputRef = useRef();
+            // const rePassInputRef = useRef();
 
-    ])
+            const [emailValue, setEmailValue] = useState({ value:'',hasError: false, msg:'' });
+            const [firstNameValue, setFirstNameValue] = useState({ value:'',hasError: false, msg:'' });
+            const [lastNameValue, setLastNameValue] = useState({ value:'',hasError: false, msg:'' });
+          
+            // const [errors, setErrors] = useState({ target: [],hasError: false, msg: [] });
+
     const {isLoggedIn} = useContext(AuthContext)
     const {addNotifications, types} = useContext(NotificationContext)
     const navigate = useNavigate();
@@ -42,7 +50,12 @@ export default function Register() {
         let lastName = formData.get('lastName').trim();
         let email = formData.get('email').trim();
         let password = formData.get('password').trim();
-        let rePassword = formData.get('rePassword').trim()
+        let rePassword = formData.get('rePassword').trim();
+
+        setEmailValue({ value:email,hasError: false, msg:'' });
+        setFirstNameValue({ value:firstName,hasError: false, msg:'' });
+        setLastNameValue({ value:lastName,hasError: false, msg:'' });
+        
 
         try {
            registerInputValidation(email, password, firstName, lastName, rePassword)
@@ -56,6 +69,54 @@ export default function Register() {
             throw err.message
         }
     }
+    function validateEmailHandler(e) {
+        e.preventDefault();
+
+        if (emailValidation(e.target.value) === false) {
+           setEmailValue({value:e.target.value,hasError: true, msg:'Invalid email'})
+           setTimeout(()=>{emailInputRef.current.focus()}, 300) 
+          
+        } else {
+            setEmailValue({value:e.target.value,hasError: false, msg:''})
+      
+        }
+
+    }
+
+    // const validatePassHandler = (e) => {
+    //     e.preventDefault();
+    //     if (passwordValidation(e.target.value) === false) {
+    //         // setErrors({target: 'pass',hasError:true, msg:'Pass must be at least 3 char long'})
+    //     } else {
+    //         // setErrors({target: '',hasError: false, msg: ''})
+           
+    //     }
+
+    // }
+    const validateFNameHandler = (e)=>{
+        e.preventDefault();
+        
+        if (namesValidation(e.target.value) === false) {
+            setFirstNameValue({ value:e.target.value,hasError: true, msg:'First Name must be at least 3 characters long' })
+          setTimeout(()=>{firstNameInputRef.current.focus()}, 300) 
+           
+        }else {
+            setFirstNameValue({ value:e.target.value,hasError: false, msg:'' })
+            
+        }
+    }
+    const validateLNameHandler = (e)=>{
+        e.preventDefault();
+        setLastNameValue(e.target.value)
+        if (namesValidation(e.target.value) === false) {
+            setLastNameValue({ value:e.target.value,hasError: true, msg:'Last Name must be at least 3 characters long' })
+            setTimeout(()=>{lastNameInputRef.current.focus()}, 300) 
+           
+        }else {
+            setLastNameValue({ value:e.target.value,hasError: false, msg:'' })
+           
+        }
+    }
     return (
         <main className={styles.body} >
             < section id="register-page" >
@@ -63,7 +124,66 @@ export default function Register() {
                     <div className={styles.image} >
                         <h2 className={styles.cardHeading} > Create your account </h2> </div>
                     <form className={styles.cardForm} method="POST" onSubmit={onRegisterHandler}>
-                        {inputs.map(input => <FormItems key={uniqid()} data={input} />)}
+                        
+                        <Input
+                            ref={firstNameInputRef}
+                            key={uniqid()}
+                            text='First Name'
+                            name='firstName'
+                            placeholder='Magi'
+                            value={firstNameValue.value}
+                            onBlur={validateFNameHandler}
+                            error={firstNameValue}
+                           
+                            
+                        />
+                        <Input
+                             ref={lastNameInputRef}
+                            key={uniqid()}
+                            text='Last Name'
+                            name='lastName'
+                            placeholder='Ivanova'
+                            value={lastNameValue.value}
+                            
+                            onBlur={validateLNameHandler}
+                            error={lastNameValue}
+
+                        />
+                        <Input
+                            ref={emailInputRef}
+                            key={uniqid()}
+                            text='Email'
+                            name='email'
+                            placeholder='margi@abv.bg'
+                            value={emailValue.value}
+                            
+                            onBlur={validateEmailHandler}
+                            error = {emailValue}
+
+                        />
+                        <Input
+                            //  ref={passwordInputRef}
+                            key={uniqid()}
+                            text='Password'
+                            name='password'
+                            placeholder='****'
+                            // value={passValue}
+                            type= 'password' 
+                            
+                        />
+                        <Input
+                            //  ref={rePassInputRef}
+                            key={uniqid()}
+                            text='Repeat Password'
+                            name='rePassword'
+                            placeholder='****'
+                            // value={rePassValue}
+                            type= 'password'
+                            
+                            
+
+                        />
+
                         <div className={styles.action} >
                             <button className={styles.actionButton} > Get started </button> </div>
                     </form>

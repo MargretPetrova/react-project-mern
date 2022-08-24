@@ -6,25 +6,43 @@ const PHONE_PATTERN = /^0?[0-9]{9}$/
  export function emailValidation(email){
     if (!EMAIL_PATTERN.test(email)) {
         return false;
+    }else{
+       return true
     }
  }
 
  export function passwordValidation(pass){
     if (pass.length < 3) {
        return false;
-    }
+    }else{
+        return true
+     }
  }
+
+ export function namesValidation(name){
+    if (name.length < 3) {
+       return false;
+    }else{
+        return true
+     }
+ }
+ 
 export function loginInputValidation(email, password) {
-    if (email == '' || password == '') {
-        throw new Error(`All fields are requred`)
-    }
-    if (!emailValidation(email)) {
-       
-        throw new Error('Email must be valid and contain only english letters!')
-    }
-    if (!passwordValidation(password)) {
+     if (emailValidation(email)=== false) {
         
-        throw new Error('Password must be at least 3 characters')
+        return {error : `Email must be valid and contain only english letters!`}
+        // throw new Error('Email must be valid and contain only english letters!')
+    }else if (passwordValidation(password) === false) {
+        
+        return {error : `Password must be at least 3 characters`}
+        // throw new Error('Password must be at least 3 characters')
+    }if (email === '' || password === '') {
+        
+        return {error : `All fields are requred`}
+        // throw new Error(`All fields are requred`)
+    }else{
+       
+        return true
     }
 }
 
@@ -33,15 +51,26 @@ export function registerInputValidation(email, password, firstName, lastName, re
         throw new Error(`All fields are requred`)
     }
     if (password != rePassword) {
-        throw new Error(`Enter correct password`)
+        throw new Error(`Pass and RePass dont match`)
 
     }
-    if (!EMAIL_PATTERN.test(email)) {
+    if (emailValidation(email)=== false) {
+       
         throw new Error('Email must be valid and contain only english letters!')
     }
-    if (password.length < 3) {
+    if (passwordValidation(password) === false) {
+        
         throw new Error('Password must be at least 3 characters')
     }
+    if (namesValidation(firstName) === false) {
+        
+        throw new Error('Name must be at least 3 characters')
+    }
+    if (namesValidation(lastName) === false) {
+        
+        throw new Error('Name must be at least 3 characters')
+    }
+
 }
 
 
