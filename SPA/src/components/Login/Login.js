@@ -14,8 +14,8 @@ import { NotificationContext } from "../../contexts/NotificationContext";
 // import {useCookies} from 'react-cookie';
 import convertError from "../../helpers/errorConverter";
 import { emailValidation, loginInputValidation, passwordValidation } from "../../helpers/inputValidation";
+import Form from '../Forms/Form'
 
-let emailError =false;
 export default function Login() {
 
     useEffect(() => {
@@ -63,20 +63,19 @@ export default function Login() {
 
         if (emailValidation(e.target.value) === false) {
             emailInputRef.current.focus();
-            
+
             e.target.style.borderColor = 'red';
         } else {
-            e.target.style.borderColor = ''; 
+            e.target.style.borderColor = '';
         }
     }
 
     const validatePassHandler = (e) => {
         e.preventDefault();
         if (passwordValidation(e.target.value) === false) {
-            
+
             passwordInputRef.current.focus();
             e.target.style.borderColor = 'red';
-            // e.target.invalid = true
         } else {
             e.target.style.borderColor = ''
         }
@@ -93,8 +92,32 @@ export default function Login() {
                     <div className={styles.image}>
                         <h2 className={styles.cardHeading} >Login</h2>
                     </div>
+                    <Form method="POST" handler={onLoginHandler} action="Login">
+                        <Input
+                            ref={emailInputRef}
+                            key={uniqid()}
+                            text='Email'
+                            name='email'
+                            placeholder='margi@abv.bg'
+                            value={emailValue}
 
-                    <form className={styles.cardForm} method="POST" onSubmit={onLoginHandler}>
+                            onBlur={validateEmailHandler}
+
+                        />
+                        <Input
+                            ref={passwordInputRef}
+                            key={uniqid()}
+                            text='Password'
+                            name='password'
+                            placeholder='*********'
+                            value=''
+                            type='password'
+
+                            onBlur={validatePassHandler}
+                        />
+
+                    </Form>
+                    {/* <form className={styles.cardForm} method="POST" onSubmit={onLoginHandler}>
 
                         <Input
                             ref={emailInputRef}
@@ -103,7 +126,7 @@ export default function Login() {
                             name='email'
                             placeholder='margi@abv.bg'
                             value={emailValue}
-                            // pattern='^([a-zA-Z]+)@([a-zA-Z]+)\.([a-zA-Z]+)$'
+                          
                             onBlur={validateEmailHandler}
                            
                         />
@@ -123,7 +146,7 @@ export default function Login() {
                         <div className={styles.action}>
                             <button className={styles.actionButton}>Login</button>
                         </div>
-                    </form>
+                    </form> */}
                     <div className={styles.cardInfo}>
                         <small>Dont have an account?<Link to="/register">Sign up</Link>
                         </small>

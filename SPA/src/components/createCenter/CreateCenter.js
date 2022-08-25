@@ -3,38 +3,38 @@ import FormItems from '../Items/FormItems'
 import uniqid from 'uniqid';
 import styles from './CreateCenter.module.css'
 import { createCenter } from "../../services/postRequests";
-import { useNavigate , Navigate} from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { NotificationContext } from "../../contexts/NotificationContext";
 import convertError from "../../helpers/errorConverter";
 import { createInputValidation } from "../../helpers/inputValidation";
+import Form from '../Forms/Form';
+import Input from '../Items/Input'
 
 export default function CreateCenter() {
+    useEffect(() => {
+        document.title = 'Create Page'
+    }, [])
 
     const navigate = useNavigate();
 
-    const{userInfo}= useContext(AuthContext)
+    const { userInfo } = useContext(AuthContext)
+    const { addNotifications, types } = useContext(NotificationContext);
 
-    const{ addNotifications, types} = useContext(NotificationContext);
-
-   
-    useEffect(()=>{
-        document.title = 'Create Page'
-            }, []) 
-            
-    const [inputs, setInputs] = useState([
-        { id: uniqid(), text: 'Name', placeholder: 'Bright future- west', name: 'name' },
-        { id: uniqid(), text: 'Location', placeholder: 'Sofia', name: 'location' },
-        { id: uniqid(), text: 'Address', placeholder: 'Vitoshka 10', name: 'address' },
-       
-        { id: uniqid(), text: 'Phone Number', placeholder: '0896 32 24 57', name: 'phone' },
-        { id: uniqid(), text: 'Image', placeholder: 'http://', name: 'image' },
-        { id: uniqid(), text: 'Description', placeholder: 'Some description about the center here...', name: 'description' }
+    const [nameValue, setNameValue] = useState({ value: '', hasError: false, msg: '' });
+    const [locationValue, setLocationValue] = useState({ value: '', hasError: false, msg: '' });
+    const [addressValue, setAddressValue] = useState({ value: '', hasError: false, msg: '' });
+    const [phoneValue, setPhoneValue] = useState({ value: '', hasError: false, msg: '' });
+    const [imageValue, setImageValue] = useState({ value: '', hasError: false, msg: '' });
+    const [descrValue, setDescrValue] = useState({ value: '', hasError: false, msg: '' });
 
 
-    ])
-   
-    async function onCreateHandler(e){
+
+
+
+
+
+    async function onCreateHandler(e) {
         e.preventDefault();
 
         let formData = new FormData(e.currentTarget);
@@ -45,10 +45,17 @@ export default function CreateCenter() {
         let image = formData.get('image').trim();
         let description = formData.get('description').trim()
 
+        setDescrValue({value:description, hasError: false, msg: ''});
+        setImageValue({value:image, hasError: false, msg: ''})
+        setPhoneValue({value:phone, hasError: false, msg: ''});
+        setAddressValue({value:address, hasError: false, msg: ''})
+        setNameValue({value:name, hasError: false, msg: ''})
+        setLocationValue({value:location, hasError: false, msg: ''})
+
         try {
             createInputValidation(name, location, address, phone, image, description)
 
-            await createCenter({name, location, address, phone, image, description}, userInfo.user.accessToken)
+            await createCenter({ name, location, address, phone, image, description }, userInfo.user.accessToken)
             addNotifications('Successfully registered center', types.success)
             navigate('/catalog')
 
@@ -61,25 +68,69 @@ export default function CreateCenter() {
     }
 
     return (
-        
+
         <main className={styles.body}>
-            
+
             <section id="create-page">
-            
+
                 <div className={styles.boxs}>
-                <div className={styles.image}>
-                <h2 className={styles.cardHeading}>Open help center</h2>
+                    <div className={styles.image}>
+                        <h2 className={styles.cardHeading}>Open help center</h2>
                     </div>
-                    <form className={styles.cardForm}  method="POST" onSubmit={onCreateHandler}>
-                        {inputs.map(input => <FormItems data={input} key={uniqid()}/>)}
+                    <Form method="POST" handler={onCreateHandler} action="Register Center">
+                        <Input
+                            key={uniqid()}
+                            type='text'
+                            text='Name'
+                            placeholder='Bright future- west'
+                            name='name'
+                            value={nameValue.value}
+                        />
 
-                       
-                        <div className={styles.action}>
-                            <button className={styles.actionButton}>Register center</button>
-                        </div>
+                        <Input
+                            key={uniqid()}
+                            text='Location'
+                            placeholder='Sofia'
+                            name='location'
+                            value={locationValue.value}
+                        />
 
 
-                    </form>
+                        <Input
+                            key={uniqid()}
+                            type='text'
+                            text='Address'
+                            placeholder='Vitoshka 10'
+                            name='address'
+                            value={addressValue.value}
+                        />
+                        <Input
+                            key={uniqid()}
+                            type='text'
+                            text='Phone Number'
+                            placeholder='0896 32 24 57'
+                            name='phone'
+                            value={phoneValue.value}
+                        />
+                        <Input
+                            key={uniqid()}
+                            type='text'
+                            text='Image'
+                            placeholder='http://'
+                            name='image'
+                            value={imageValue.value}
+                        />
+                        <Input
+                            key={uniqid()}
+                            type='text'
+                            text='Description'
+                            placeholder='Some description about the center here...'
+                            name='description'
+                            value={descrValue.value}
+                        />
+
+                    </Form>
+
                 </div>
             </section>
 

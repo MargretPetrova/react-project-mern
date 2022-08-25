@@ -1,4 +1,4 @@
-import styles from './FormItems.module.css';
+import styles from './Input.module.css';
 import React, { useRef, useImperativeHandle } from 'react';
 
 const Input = React.forwardRef((props, ref) => {
