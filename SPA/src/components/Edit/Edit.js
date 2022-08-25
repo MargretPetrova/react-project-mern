@@ -3,13 +3,15 @@ import React, { useState, useEffect, useContext } from 'react';
 import styles from '../Edit/Edit.module.css'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { editCenter, getCenter } from '../../services/postRequests';
-// import uniqid from 'uniqid';
+ import uniqid from 'uniqid';
 // import FormItems from '../items/FormItems'
 import { isOwnerFunc } from '../../guards/authGuard';
 import { AuthContext } from '../../contexts/AuthContext';
 import { NotificationContext } from '../../contexts/NotificationContext';
 import convertError from '../../helpers/errorConverter';
 import { createInputValidation } from '../../helpers/inputValidation';
+import Form from '../Forms/Form';
+import Input from '../Items/Input'
 
 function Edit() {
     useEffect(() => {
@@ -84,39 +86,60 @@ function Edit() {
                     <div className={styles.image}>
                         <h2 className={styles.cardHeading}>Edit help center</h2>
                     </div>
-                    <form className={styles.cardForm} onSubmit={onEditHandler}>
-                        <div className={styles.input} >
-                            <input type="text" className={styles.inputField} name="name" defaultValue={center.name} />
-                            <label className={styles.name}>Name</label>
-                        </div>
-                        <div className={styles.input} >
-                            <input type="text" className={styles.inputField} name="location" defaultValue={center.location} />
-                            <label className={styles.name}>Location</label>
-                        </div>
-                        <div className={styles.input} >
-                            <input type="text" className={styles.inputField} name="address" defaultValue={center.address} />
-                            <label className={styles.name}>Address</label>
-                        </div>
-                        <div className={styles.input} >
-                            <input type="text" className={styles.inputField} name="phone" defaultValue={center.phone} />
-                            <label className={styles.name}>Phone Number</label>
-                        </div>
+                    <Form method="PUT" handler={onEditHandler} action='Edit center'>
+                    <Input
+                            key={uniqid()}
+                            type='text'
+                            text='Name'
+                            placeholder='Bright future- west'
+                            name='name'
+                            value={center.name}
+                        />
 
-                        <div className={styles.input} >
-                            <input type="text" className={styles.inputField} name="image" defaultValue={center.image} />
-                            <label className={styles.name}>Image</label>
-                        </div>
-                        <div className={styles.input} >
-                            <input type="text" className={styles.inputField} name="description" defaultValue={center.description} />
-                            <label className={styles.name}>Description</label>
-                        </div>
-                        {/* {inputs.map(input => <FormItems data={input} key={uniqid()}/>)} */}
-                        <div className={styles.action}>
-                            <button className={styles.actionButton}>Edit center</button>
-                        </div>
+                        <Input
+                            key={uniqid()}
+                            text='Location'
+                            placeholder='Sofia'
+                            name='location'
+                            value={center.location}
+                        />
 
 
-                    </form>
+                        <Input
+                            key={uniqid()}
+                            type='text'
+                            text='Address'
+                            placeholder='Vitoshka 10'
+                            name='address'
+                            value={center.address}
+                        />
+                        <Input
+                            key={uniqid()}
+                            type='text'
+                            text='Phone Number'
+                            placeholder='0896 32 24 57'
+                            name='phone'
+                            value={center.phone}
+                        />
+                        <Input
+                            key={uniqid()}
+                            type='text'
+                            text='Image'
+                            placeholder='http://'
+                            name='image'
+                            value={center.image}
+                        />
+                        <Input
+                            key={uniqid()}
+                            type='text'
+                            text='Description'
+                            placeholder='Some description about the center here...'
+                            name='description'
+                            value={center.description}
+                        />
+
+                    </Form>
+                    
                 </div>
             </section>
 

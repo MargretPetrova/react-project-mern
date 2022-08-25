@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import FormItems from '../Items/FormItems'
+
 import uniqid from 'uniqid';
 import styles from './CreateCenter.module.css'
 import { createCenter } from "../../services/postRequests";
@@ -27,12 +27,6 @@ export default function CreateCenter() {
     const [phoneValue, setPhoneValue] = useState({ value: '', hasError: false, msg: '' });
     const [imageValue, setImageValue] = useState({ value: '', hasError: false, msg: '' });
     const [descrValue, setDescrValue] = useState({ value: '', hasError: false, msg: '' });
-
-
-
-
-
-
 
     async function onCreateHandler(e) {
         e.preventDefault();

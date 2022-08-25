@@ -5,17 +5,12 @@ import React , {useState, useEffect}from 'react';
 import CardItems from '../Items/CardItems'
 
 import uniqid from 'uniqid'
-import { Link } from 'react-router-dom'
+import { homeCards } from '../../helpers/texts';
 
 export default function Home() {
     useEffect(()=>{
         document.title = 'Home Page'
             }, []);
-
-let [cards, setCards] = useState([{name:'Open Help Center', image:'../static/images/home2.jpg', description: 'If you are registered user you can open own help center for free!'}, 
-{name:'Become a Volunteer', image:'../static/images/home3.jpg', description: 'Choose a center and become a volunteer in it only if you are registered user!'},
-//  {name:'Donate', image:'./static/images/home4.jpg', description: 'Chose a center and make donation.'}
-])
 
   return (
 	<main>
@@ -33,7 +28,7 @@ let [cards, setCards] = useState([{name:'Open Help Center', image:'../static/ima
             <section className={styles.centers}>
                 <h1>Support with Hummanitarian Aid</h1>
                 <div className={styles.houses}>
-                {cards.map(item => <CardItems data={item} key={uniqid()} />)}
+                {homeCards.map(item => <CardItems data={item} key={uniqid()} />)}
 
                 </div>
             </section>
