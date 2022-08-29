@@ -1,0 +1,60 @@
+.boxs {
+    margin: 10rem auto;
+    display: flex;
+    border-radius: 0.1em;
+   
+    flex-direction: column;
+    width: 100%;
+    max-width: 450px;
+    padding: .55rem;
+    background: whitesmoke;
+}
+
+.boxHeading{
+   
+    display: flex;
+    color:#282152;
+    position: relative;
+    width: 100%;
+}
+
+.image {
+    border-radius: 9px;
+    overflow: hidden;
+    padding-bottom: 50%;
+    max-height: 200px;
+    background-image: url('../../../public/static/images/avatar6.png');
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: 50% 0%;
+    position: relative;
+}
+.image1 {
+    border-radius: 9px;
+    overflow: hidden;
+    padding-bottom: 50%;
+    max-height: 200px;
+    background-image: url('../../../public/static/images/avatar2.png');
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: 50% 0%;
+    position: relative;
+}
+
+.cardHeading {
+    position: relative;
+    top: 0%;
+    /* margin-top: 55px; */
+    font-size: 1.6rem;
+    font-weight: 200;
+    color: #282152;
+    text-align: center;
+    line-height: 1.222;
+}
+
+.cardHeading>small {
+    display: block;
+    font-size: .60em;
+    font-weight: 400;
+    margin-top: .24em;
+}

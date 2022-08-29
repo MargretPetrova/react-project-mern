@@ -11,3 +11,9 @@ export const homeCards = [{
 },
     //  {name:'Donate', image:'./static/images/home4.jpg', description: 'Chose a center and make donation.'}
 ]
+
+
+export const aboutText =[{p:'This site is for support for children and families of Ukraine.There are many actions we can take as individuals to help Ukrainians who have fled the country.'},{
+    p:'The first step anyone can take to help is to learn about the issue and continue to stay informed.A simple steps you can take to help  is by opening OWN HELP CENTER, become a VOLUNTEER or DONATING in centers registered in our site.'
+}]
+

@@ -2,13 +2,13 @@ import { AuthContext } from './contexts/AuthContext';
 import { NotificationProvider } from './contexts/NotificationContext';
 import {CookiesProvider} from 'react-cookie'
 import { Header } from './components/Header/Header';
-import CreateCenter from './components/CreateCenter/CreateCenter';
-import Home from './components/Home/Home.js';
-import Register from './components/Register/Register'
-import Login from './components/Login/Login';
-import About from './components/AboutPage/About';
-import Catalog from './components/Catalog/Catalog';
-import Details from './components/Details/Details'
+import CreateCenter from './components/Pages/CreateCenter/CreateCenter';
+import Home from './components/Pages/Home/Home.js';
+import Register from './components/Pages/Register/Register'
+import Login from './components/Pages/Login/Login';
+import About from './components/Pages/AboutPage/About';
+import Catalog from './components/Pages/Catalog/Catalog';
+import Details from './components/Pages/Details/Details'
 // import uniqid from 'uniqid'
 import styles from './App.css';
 import * as authService from './services/authService'
@@ -16,10 +16,10 @@ import { useState, useEffect } from 'react'
 import { Routes, Route} from "react-router-dom";
 import { ProtectedRoute } from './components/ProtectedRoutes/ProtectedRoute';
 import { ProtectedRouteFromUser } from './components/ProtectedRoutes/ProtectedRouteFromUser'
-import { Edit } from './components/Edit/Edit';
-import ErrorPage from './components/404/ErrorPage';
+import { Edit } from './components/Pages/Edit/Edit';
+import ErrorPage from './components/Pages/404/ErrorPage';
 import Notification from './components/Notification/Notification';
-import ProfilePage from './components/ProfilePage/ProfilePage';
+import ProfilePage from './components/Pages/ProfilePage/ProfilePage';
 import {useCookies} from 'react-cookie'
 
 

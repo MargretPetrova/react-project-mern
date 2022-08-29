@@ -1,0 +1,10 @@
+.cardInfo {
+    padding: 1rem 1rem;
+    text-align: center;
+    font-size: .875rem;
+}
+
+.cardInfo>small {
+    font-size: 1.2em;
+    color: #282152;
+}

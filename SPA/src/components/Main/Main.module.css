@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+.body {
+    background-image: url('../../../public/static/images/hand2.jpg');
+    display: flow-root;
+     margin-top: -5rem;
+     background-repeat: no-repeat;
+     background-size: cover;
+    height: 1200px;
+}

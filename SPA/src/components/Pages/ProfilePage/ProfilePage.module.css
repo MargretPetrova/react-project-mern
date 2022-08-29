@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+
+
+
+.wrapper {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 500px;
+    max-width: 600px; 
+    display: flex;
+    margin-top: 30px;
+    margin: 140px auto;
+    border-radius: 0.1em;
+    box-shadow: 0px 0px 16px rgb(253, 253, 253);
+    background-color:rgb(173, 168, 168);;
+}
+.wrapper:hover{
+    box-shadow: 0px 0px 40px rgb(253, 253, 253);
+}
+@media only screen and (max-width: 600px) {
+    .wrapper {
+      flex-direction: column;
+    }
+  }
+  
+
+.img {
+    background-image: url('../../../../public/static/images/avatar2.png');
+    background-repeat: no-repeat;
+    background-size:cover;
+    padding-left: 10px;
+    float: left;
+    height:50%;
+    margin-right: 5px;
+    border-radius: 0.1em;
+    flex:1;
+  
+}
+
+
+.img h2{
+    font-weight: 250;
+    width:100%;
+    text-align: center;
+    margin-top: 16rem;
+  }
+
+.info {
+    flex:1;
+    float: left;
+   margin-top: 20px;
+    border-radius: 0 7px 10px 7px;
+    background-color: rgb(173, 168, 168);
+}
+
+.text {
+    height: 300px;
+    width: 327px;
+}
+
+
+
+.text h1,
+.btn p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.text h2 {
+    margin: 10px 0 47px 18px;
+    font-size: 20px;
+    font-weight: 200;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* text-transform: uppercase; */
+    color: #453c79;
+    /* letter-spacing: 0.1em; */
+    margin-bottom: 0;
+}
+
+
+.text>p {
+    margin: 10px 10px 10px 18px;
+    
+    height: auto;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #282152;
+    line-height: 1.6em;
+    margin-bottom: 25px;
+    font-size: 20px;
+    font-weight: lighter;
+    overflow: hidden;
+}
+.text>p>a{
+    color:green;
+}
+
+.btn {
+    padding-top: 20px;
+    text-align: center;
+    margin-top:30px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.btn button{
+    
+    border: none;
+    height: auto;
+    width: 80%;
+    align-items: center;
+    padding: 5px;
+    
+border-radius: 0.1em;
+    justify-content: space-around;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: white;
+    display: block;
+   margin-top: 40px;
+    margin-left: 30px;
+    margin-right: 20px;
+    
+
+}
+.edit {
+    cursor:pointer;
+    background-color: #9591af;
+}
+
+.edit:hover {
+    cursor:pointer;
+    background-color: #282152;
+}
+.text>h4 a{
+    text-decoration: none;
+    
+    border-radius:10px;
+    border-color: #282152;
+}
