@@ -20,7 +20,8 @@ import { Edit } from './components/Pages/Edit/Edit';
 import ErrorPage from './components/Pages/404/ErrorPage';
 import Notification from './components/Notification/Notification';
 import ProfilePage from './components/Pages/ProfilePage/ProfilePage';
-import {useCookies} from 'react-cookie'
+import {useCookies} from 'react-cookie';
+import Modal from './components/Modal/Modal'
 
 
 function App() {
@@ -46,6 +47,15 @@ if(cookies.user != undefined){
     setUserInfo({userInfo:''});
     
   }
+  const [showModal, setShowModal] = useState(false);
+  const showModalHandler =()=>{
+    setShowModal(true)
+  }
+  const hideModalHandler = ()=>{
+    console.log('close')
+    setShowModal(false)
+  }
+
 
   return (
     <CookiesProvider>
@@ -53,7 +63,9 @@ if(cookies.user != undefined){
       <NotificationProvider>
       <div className={styles.flexCcontainer}>
         {/* <ErrorBoundary> */}
-        <Header data-testId="header"/>
+{showModal && <Modal onClose={hideModalHandler}/> }
+
+        <Header data-testId="header" onShowModal ={showModalHandler}/>
           <Notification/>
         <Routes>
           <Route path="/" element={<Home/>} />
