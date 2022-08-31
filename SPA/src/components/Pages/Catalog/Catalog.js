@@ -7,7 +7,7 @@ import { NotificationContext } from '../../../contexts/NotificationContext';
 import convertError from '../../../helpers/errorConverter';
 
 export default function Catalog() {
-
+ const [isLoading, setIsloading] = useState(false)
     useEffect(() => {
         document.title = 'Catalog Page';
         getData();
@@ -17,7 +17,7 @@ export default function Catalog() {
     const {addNotifications, types} = useContext(NotificationContext)
 
     async function getData() {
-
+setIsloading(true)
         try {
 
             const result = await getAllCenters();
@@ -28,6 +28,7 @@ export default function Catalog() {
             addNotifications(convertError(err), types.error)
             console.error(err)
         }
+        setIsloading(false)
     }
 
     return (
@@ -40,12 +41,19 @@ export default function Catalog() {
 
 
                 <div className={styles.centers}>
-                    {centers.length ?
+                    {!isLoading && (centers.length ?
                         centers.map(center => <CardItems data={center} key={uniqid()} />)
                         : (<div className={styles.noData}>
                             <p >There has no centers registerd yet...</p>
                         </div>)
-                    }
+                    )}
+                    {isLoading && <p>Loading...</p>}
+                    {/* {centers.length ?
+                        centers.map(center => <CardItems data={center} key={uniqid()} />)
+                        : (<div className={styles.noData}>
+                            <p >There has no centers registerd yet...</p>
+                        </div>)
+                    } */}
                    
                 </div>
             </section>
